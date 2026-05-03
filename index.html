@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sunday — We Changed Your Range.</title>
+  <meta name="description" content="Sunday is the first skill-based competition platform for driving range golfers. Compete in GHIN-verified flights, win real cash, every Sunday night." />
+  <meta property="og:title" content="Sunday — We Changed Your Range." />
+  <meta property="og:description" content="Real-money tournaments at the driving range. GHIN-verified flights. Toptracer-powered. Payouts every Sunday night." />
+  <meta property="og:image" content="images/IMG_2297.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --card: #FDFCF8;
+      --red: #B91C1C;
+      --black: #0A0A0A;
+      --dark: #111111;
+      --text: #111111;
+      --muted: #888888;
+      --border: rgba(0,0,0,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ─────────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 48px;
+      background: rgba(245,240,232,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo img { height: 36px; width: auto; }
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px; font-weight: 900;
+      color: var(--red); letter-spacing: 1px;
+    }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-pill {
+      background: var(--dark); color: rgba(255,255,255,0.5);
+      font-size: 10px; font-weight: 800; letter-spacing: 2px;
+      padding: 6px 14px; border-radius: 20px;
+    }
+    .nav-cta {
+      background: var(--red); color: white;
+      font-size: 12px; font-weight: 800; letter-spacing: 1.5px;
+      padding: 10px 22px; border-radius: 10px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* ── HERO ─────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--black);
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg-gradient {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 60%, rgba(185,28,28,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-top-bar {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; background: var(--red);
+    }
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(185,28,28,0.12); border: 1px solid rgba(185,28,28,0.25);
+      border-radius: 20px; padding: 6px 16px;
+      font-size: 11px; font-weight: 800; letter-spacing: 2px;
+      color: var(--red); margin-bottom: 32px;
+    }
+    .hero-eyebrow-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--red);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.3; }
+    }
+    .hero-logo { margin-bottom: 40px; }
+    .hero-logo img {
+      height: 90px; width: auto;
+      filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(320deg) brightness(0.7);
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(52px, 7vw, 96px);
+      font-weight: 900; color: #FDFCF8;
+      line-height: 1.0; letter-spacing: -2px;
+      margin-bottom: 12px;
+    }
+    .hero h1 span { color: var(--red); }
+    .hero-tagline {
+      font-size: 13px; font-weight: 800; letter-spacing: 4px;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 28px; text-transform: uppercase;
+    }
+    .hero-sub {
+      font-size: 18px; color: rgba(255,255,255,0.5);
+      line-height: 1.6; max-width: 520px;
+      margin: 0 auto 48px;
+    }
+    .hero-sub strong { color: rgba(255,255,255,0.8); font-weight: 600; }
+    .hero-actions {
+      display: flex; gap: 14px; align-items: center;
+      flex-wrap: wrap; justify-content: center;
+      margin-bottom: 72px;
+    }
+    .btn-primary {
+      background: var(--red); color: white;
+      font-size: 13px; font-weight: 800; letter-spacing: 2px;
+      padding: 17px 36px; border-radius: 14px;
+      text-decoration: none; border: none; cursor: pointer;
+      box-shadow: 0 8px 32px rgba(185,28,28,0.4);
+      transition: all 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(185,28,28,0.5); }
+    .btn-ghost {
+      background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.7);
+      font-size: 13px; font-weight: 700; letter-spacing: 1px;
+      padding: 17px 36px; border-radius: 14px;
+      text-decoration: none; border: 1px solid rgba(255,255,255,0.12);
+      transition: all 0.2s;
+    }
+    .btn-ghost:hover { background: rgba(255,255,255,0.1); }
+
+    /* Hero phone mockups */
+    .hero-phones {
+      display: flex; align-items: flex-end; justify-content: center;
+      gap: 16px; position: relative;
+    }
+    .phone-mockup {
+      border-radius: 44px;
+      overflow: hidden;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.08);
+      position: relative;
+    }
+    .phone-mockup img { display: block; width: 100%; }
+    .phone-main { width: 220px; z-index: 3; }
+    .phone-left {
+      width: 190px; z-index: 2;
+      transform: translateX(30px) rotate(-6deg) scale(0.92);
+      opacity: 0.7;
+    }
+    .phone-right {
+      width: 190px; z-index: 2;
+      transform: translateX(-30px) rotate(6deg) scale(0.92);
+      opacity: 0.7;
+    }
+
+    /* ── STATS BAR ─────────────────────────────────────── */
+    .stats-bar {
+      background: var(--dark);
+      padding: 32px 48px;
+      display: flex; align-items: center; justify-content: center;
+      gap: 0;
+    }
+    .stat-item {
+      flex: 1; max-width: 220px;
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 0 32px;
+      border-right: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-family: 'Space Mono', monospace;
+      font-size: 32px; font-weight: 700; color: var(--red);
+    }
+    .stat-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+      color: rgba(255,255,255,0.35); text-transform: uppercase;
+    }
+
+    /* ── SECTION BASE ──────────────────────────────────── */
+    section { padding: 100px 48px; }
+    .section-eyebrow {
+      font-size: 10px; font-weight: 800; letter-spacing: 3px;
+      color: var(--red); margin-bottom: 16px; text-transform: uppercase;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 900; color: var(--text);
+      line-height: 1.1; letter-spacing: -1px;
+      margin-bottom: 20px;
+    }
+    .section-title.light { color: #FDFCF8; }
+    .section-sub {
+      font-size: 17px; color: var(--muted);
+      line-height: 1.7; max-width: 560px;
+    }
+    .section-sub.light { color: rgba(255,255,255,0.45); }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* ── HOW IT WORKS ──────────────────────────────────── */
+    .how-section { background: var(--cream); }
+    .how-header { text-align: center; margin-bottom: 72px; }
+    .how-header .section-sub { margin: 0 auto; }
+    .steps-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 24px; align-items: start;
+    }
+    .step-card {
+      background: var(--card);
+      border-radius: 20px; padding: 28px 24px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.04);
+      position: relative; overflow: hidden;
+    }
+    .step-number {
+      font-family: 'Space Mono', monospace;
+      font-size: 72px; font-weight: 700;
+      color: rgba(0,0,0,0.04);
+      position: absolute; top: -8px; right: 12px;
+      line-height: 1; user-select: none;
+    }
+    .step-icon {
+      width: 48px; height: 48px; border-radius: 14px;
+      background: var(--red); display: flex;
+      align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .step-icon svg { width: 24px; height: 24px; }
+    .step-title {
+      font-size: 18px; font-weight: 800;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .step-desc {
+      font-size: 14px; color: var(--muted); line-height: 1.6;
+    }
+    .step-phone {
+      margin-top: 24px; border-radius: 24px; overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .step-phone img { width: 100%; display: block; }
+
+    /* ── SCREENSHOTS ───────────────────────────────────── */
+    .screens-section {
+      background: var(--black); padding: 100px 0;
+    }
+    .screens-header { text-align: center; padding: 0 48px; margin-bottom: 60px; }
+    .screens-scroll {
+      display: flex; gap: 20px;
+      padding: 20px 48px 40px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .screens-scroll::-webkit-scrollbar { display: none; }
+    .screen-item {
+      flex-shrink: 0;
+      width: 200px; border-radius: 36px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.06);
+      transition: transform 0.3s;
+    }
+    .screen-item:hover { transform: translateY(-8px) scale(1.02); }
+    .screen-item img { width: 100%; display: block; }
+    .screen-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      color: rgba(255,255,255,0.3); text-align: center;
+      margin-top: 14px; text-transform: uppercase;
+    }
+
+    /* ── GAME MODES ────────────────────────────────────── */
+    .modes-section { background: var(--cream); }
+    .modes-header { margin-bottom: 56px; }
+    .modes-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .mode-card {
+      background: var(--card);
+      border-radius: 20px; padding: 32px;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      display: flex; gap: 20px; align-items: flex-start;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .mode-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+    .mode-icon {
+      width: 52px; height: 52px; flex-shrink: 0;
+      border-radius: 16px; background: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .mode-icon svg { width: 26px; height: 26px; }
+    .mode-name {
+      font-size: 19px; font-weight: 800;
+      color: var(--text); margin-bottom: 6px;
+    }
+    .mode-desc {
+      font-size: 14px; color: var(--muted);
+      line-height: 1.6; margin-bottom: 14px;
+    }
+    .mode-meta {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .mode-tag {
+      background: rgba(185,28,28,0.08);
+      border: 1px solid rgba(185,28,28,0.15);
+      color: var(--red);
+      font-size: 11px; font-weight: 700; letter-spacing: 1px;
+      padding: 4px 12px; border-radius: 20px;
+    }
+
+    /* ── FLIGHTS ───────────────────────────────────────── */
+    .flights-section { background: var(--dark); }
+    .flights-header { text-align: center; margin-bottom: 60px; }
+    .flights-header .section-sub { margin: 0 auto; }
+    .flights-grid {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+    .flight-card {
+      border-radius: 18px; padding: 24px 20px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.08);
+      transition: transform 0.2s;
+    }
+    .flight-card:hover { transform: translateY(-4px); }
+    .flight-name {
+      font-size: 15px; font-weight: 800; color: white;
+      margin-bottom: 6px;
+    }
+    .flight-range {
+      font-family: 'Space Mono', monospace;
+      font-size: 12px; color: rgba(255,255,255,0.4);
+      margin-bottom: 10px;
+    }
+    .flight-badge {
+      font-size: 9px; font-weight: 800; letter-spacing: 1.5px;
+      color: white; padding: 4px 10px; border-radius: 20px;
+      display: inline-block;
+    }
+    .ghin-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 30px; padding: 12px 24px;
+      margin-top: 40px;
+    }
+    .ghin-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ADE80; }
+    .ghin-text {
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* ── PAYOUT ────────────────────────────────────────── */
+    .payout-section {
+      background: var(--cream);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 80px; align-items: center;
+      padding: 100px 80px;
+    }
+    .payout-left {}
+    .payout-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 5vw, 72px);
+      font-weight: 900; color: var(--text);
+      line-height: 1.0; letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+    .payout-title span { color: var(--red); display: block; }
+    .payout-sub {
+      font-size: 17px; color: var(--muted);
+      line-height: 1.7; margin-bottom: 32px;
+    }
+    .payout-right {
+      background: var(--dark); border-radius: 24px;
+      padding: 32px; overflow: hidden;
+    }
+    .payout-table-title {
+      font-size: 9px; font-weight: 800; letter-spacing: 3px;
+      color: rgba(255,255,255,0.3); margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+    .payout-row {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .payout-row:last-child { border-bottom: none; }
+    .payout-pos {
+      width: 36px; height: 26px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 800;
+    }
+    .payout-pos.first { background: var(--red); color: white; }
+    .payout-pos.other { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); }
+    .payout-label { flex: 1; font-size: 13px; color: rgba(255,255,255,0.5); }
+    .payout-pct { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.6); margin-right: 8px; }
+    .payout-bar-wrap {
+      width: 80px; height: 4px; background: rgba(255,255,255,0.06);
+      border-radius: 2px; overflow: hidden;
+    }
+    .payout-bar-fill { height: 100%; border-radius: 2px; background: var(--red); }
+
+    /* ── PERFORMANCE ───────────────────────────────────── */
+    .perf-section { background: var(--black); }
+    .perf-header { text-align: center; margin-bottom: 64px; }
+    .perf-header .section-sub { margin: 0 auto; }
+    .perf-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .perf-card {
+      border-radius: 20px; overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.06);
+      transition: transform 0.3s;
+    }
+    .perf-card:hover { transform: translateY(-8px); }
+    .perf-card img { width: 100%; display: block; }
+    .perf-card-label {
+      background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 20px;
+      font-size: 12px; font-weight: 700; letter-spacing: 1px;
+      color: rgba(255,255,255,0.4); text-transform: uppercase;
+    }
+
+    /* ── WAITLIST ──────────────────────────────────────── */
+    .waitlist-section {
+      background: var(--red);
+      text-align: center; padding: 100px 48px;
+    }
+    .waitlist-section .section-eyebrow { color: rgba(255,255,255,0.6); }
+    .waitlist-section .section-title { color: white; margin-bottom: 16px; }
+    .waitlist-section .section-sub { color: rgba(255,255,255,0.65); margin: 0 auto 48px; }
+    .waitlist-form {
+      display: flex; gap: 12px; justify-content: center;
+      max-width: 500px; margin: 0 auto 24px;
+      flex-wrap: wrap;
+    }
+    .waitlist-input {
+      flex: 1; min-width: 240px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.25);
+      border-radius: 14px; padding: 16px 20px;
+      font-size: 15px; color: white;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+    }
+    .waitlist-input::placeholder { color: rgba(255,255,255,0.45); }
+    .waitlist-input:focus { background: rgba(255,255,255,0.2); border-color: rgba(255,255,255,0.4); }
+    .waitlist-btn {
+      background: white; color: var(--red);
+      font-size: 13px; font-weight: 800; letter-spacing: 2px;
+      padding: 16px 28px; border-radius: 14px;
+      border: none; cursor: pointer;
+      transition: all 0.2s; white-space: nowrap;
+    }
+    .waitlist-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.2); }
+    .waitlist-note {
+      font-size: 12px; color: rgba(255,255,255,0.45);
+    }
+    .waitlist-platforms {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-top: 40px;
+    }
+    .platform-badge {
+      display: flex; align-items: center; gap: 8px;
+      background: rgba(0,0,0,0.15); border-radius: 12px;
+      padding: 10px 18px;
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.7);
+    }
+
+    /* ── FOOTER ────────────────────────────────────────── */
+    footer {
+      background: var(--black);
+      padding: 60px 48px 40px;
+      display: flex; flex-direction: column; align-items: center;
+      gap: 32px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .footer-logo img {
+      height: 40px;
+      filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(320deg) brightness(0.6);
+    }
+    .footer-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px; font-weight: 900;
+      color: var(--red);
+    }
+    .footer-links {
+      display: flex; gap: 32px; align-items: center;
+    }
+    .footer-links a {
+      font-size: 13px; color: rgba(255,255,255,0.3);
+      text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: rgba(255,255,255,0.7); }
+    .footer-bottom {
+      font-size: 12px; color: rgba(255,255,255,0.2);
+      text-align: center; border-top: 1px solid rgba(255,255,255,0.06);
+      padding-top: 24px; width: 100%;
+    }
+
+    /* ── ANIMATIONS ────────────────────────────────────── */
+    .fade-up {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up-delay-1 { transition-delay: 0.1s; }
+    .fade-up-delay-2 { transition-delay: 0.2s; }
+    .fade-up-delay-3 { transition-delay: 0.3s; }
+    .fade-up-delay-4 { transition-delay: 0.4s; }
+
+    /* ── DIVIDER ───────────────────────────────────────── */
+    .red-bar { height: 3px; background: var(--red); width: 48px; border-radius: 2px; }
+
+    /* ── RESPONSIVE ────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      nav { padding: 16px 24px; }
+      section { padding: 80px 24px; }
+      .steps-grid { grid-template-columns: repeat(2, 1fr); }
+      .flights-grid { grid-template-columns: repeat(3, 1fr); }
+      .payout-section { grid-template-columns: 1fr; padding: 80px 24px; gap: 48px; }
+      .perf-grid { grid-template-columns: 1fr 1fr; }
+      .modes-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-pill { display: none; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .flights-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero-phones { display: none; }
+      .perf-grid { grid-template-columns: 1fr; }
+      .stats-bar { padding: 24px 20px; gap: 0; }
+      .stat-item { padding: 0 16px; }
+      .stat-value { font-size: 24px; }
+      footer { padding: 48px 24px 32px; }
+      .footer-links { flex-wrap: wrap; justify-content: center; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <img src="images/IMG_2290.png" alt="Sunday" style="border-radius:8px;" />
+      <span class="nav-logo-text">SUNDAY</span>
+    </a>
+    <div class="nav-right">
+      <span class="nav-pill">COMING SOON</span>
+      <a href="#waitlist" class="nav-cta">JOIN WAITLIST</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg-gradient"></div>
+    <div class="hero-top-bar"></div>
+
+    <div class="hero-eyebrow">
+      <div class="hero-eyebrow-dot"></div>
+      POWERED BY TOPTRACER · GHIN VERIFIED
+    </div>
+
+    <h1>We Changed<br /><span>Your Range.</span></h1>
+    <p class="hero-tagline">SKILL-BASED GOLF COMPETITION</p>
+    <p class="hero-sub">
+      Enter real-money tournaments at the driving range.
+      <strong>Compete in your flight. Win real cash.</strong>
+      Payouts every Sunday night.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#waitlist" class="btn-primary">JOIN THE WAITLIST</a>
+      <a href="#how" class="btn-ghost">SEE HOW IT WORKS</a>
+    </div>
+
+    <div class="hero-phones">
+      <div class="phone-mockup phone-left">
+        <img src="images/IMG_2299.png" alt="Sunday Home" />
+      </div>
+      <div class="phone-mockup phone-main">
+        <img src="images/IMG_2297.png" alt="Sunday Payout" />
+      </div>
+      <div class="phone-mockup phone-right">
+        <img src="images/IMG_2310.png" alt="Sunday Session" />
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat-item">
+      <span class="stat-value">37M</span>
+      <span class="stat-label">Golfers in the US</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">700+</span>
+      <span class="stat-label">Toptracer Ranges</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">$26B</span>
+      <span class="stat-label">Golf Equipment Market</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-value">15%</span>
+      <span class="stat-label">Platform Rake Only</span>
+    </div>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <section class="how-section" id="how">
+    <div class="container">
+      <div class="how-header fade-up">
+        <p class="section-eyebrow">HOW IT WORKS</p>
+        <h2 class="section-title">Four steps.<br />That's it.</h2>
+        <p class="section-sub">Sunday plugs directly into Toptracer. No camera. No manual entry. Just hit balls and watch your leaderboard position update in real time.</p>
+      </div>
+      <div class="steps-grid">
+        <div class="step-card fade-up fade-up-delay-1">
+          <div class="step-number">01</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/>
+              <path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="white"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Connect Your Bay</h3>
+          <p class="step-desc">Open Sunday, tap Enter, and connect to your Toptracer bay in seconds. Sunday finds your bay automatically.</p>
+          <div class="step-phone"><img src="images/IMG_2309.png" alt="Bay Found" /></div>
+        </div>
+        <div class="step-card fade-up fade-up-delay-2">
+          <div class="step-number">02</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Enter a Tournament</h3>
+          <p class="step-desc">Choose your game — Closest to Pin, Long Drive, Course Round, or SUNDAY Game. Entry fees from $3 to $50.</p>
+          <div class="step-phone"><img src="images/IMG_2307.png" alt="Tournament Entry" /></div>
+        </div>
+        <div class="step-card fade-up fade-up-delay-3">
+          <div class="step-number">03</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Hit Your Shots</h3>
+          <p class="step-desc">Every shot streams live from Toptracer. Your best shot counts. Watch your rank update in real time.</p>
+          <div class="step-phone"><img src="images/IMG_2310.png" alt="Live Session" /></div>
+        </div>
+        <div class="step-card fade-up fade-up-delay-4">
+          <div class="step-number">04</div>
+          <div class="step-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <rect x="2" y="5" width="20" height="14" rx="3"/><path d="M16 12h.01"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Get Paid Sunday Night</h3>
+          <p class="step-desc">Top 15 finishers in your flight get paid. Cash hits your Sunday Wallet at 11:59 PM PT every week.</p>
+          <div class="step-phone"><img src="images/IMG_2297.png" alt="Payout" /></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCREENSHOT CAROUSEL -->
+  <div class="screens-section">
+    <div class="screens-header fade-up">
+      <p class="section-eyebrow" style="color: var(--red);">THE APP</p>
+      <h2 class="section-title light">Built. Designed.<br />Ready to compete.</h2>
+    </div>
+    <div class="screens-scroll">
+      <div>
+        <div class="screen-item"><img src="images/IMG_2292.png" alt="Welcome" /></div>
+        <p class="screen-label">Welcome</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2293.png" alt="Compete" /></div>
+        <p class="screen-label">Compete</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2299.png" alt="Home" /></div>
+        <p class="screen-label">Home</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2300.png" alt="Play" /></div>
+        <p class="screen-label">Play</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2307.png" alt="Tournament" /></div>
+        <p class="screen-label">Tournament</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2308.png" alt="Connect" /></div>
+        <p class="screen-label">Connect</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2309.png" alt="Bay Found" /></div>
+        <p class="screen-label">Bay Found</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2310.png" alt="Live Session" /></div>
+        <p class="screen-label">Live Session</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2304.png" alt="Profile" /></div>
+        <p class="screen-label">Profile</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2305.png" alt="Rankings" /></div>
+        <p class="screen-label">Rankings</p>
+      </div>
+      <div>
+        <div class="screen-item"><img src="images/IMG_2306.png" alt="Wallet" /></div>
+        <p class="screen-label">Wallet</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- GAME MODES -->
+  <section class="modes-section">
+    <div class="container">
+      <div class="modes-header fade-up">
+        <p class="section-eyebrow">GAME MODES</p>
+        <h2 class="section-title">Choose your game.</h2>
+        <p class="section-sub">Four ways to compete. All powered by Toptracer. All paid out every Sunday night.</p>
+      </div>
+      <div class="modes-grid">
+        <div class="mode-card fade-up fade-up-delay-1">
+          <div class="mode-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/><line x1="12" y1="2" x2="12" y2="5"/><line x1="12" y1="19" x2="12" y2="22"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="mode-name">Closest to Pin</h3>
+            <p class="mode-desc">One target. 5-minute window. Hit as many balls as you want — your best shot counts. Compete at 150 yards.</p>
+            <div class="mode-meta">
+              <span class="mode-tag">$3–$10 ENTRY</span>
+              <span class="mode-tag">5 MIN</span>
+              <span class="mode-tag">GHIN FLIGHTS</span>
+            </div>
+          </div>
+        </div>
+        <div class="mode-card fade-up fade-up-delay-2">
+          <div class="mode-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <path d="M5 12h14"/><path d="M12 5l7 7-7 7"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="mode-name">Long Drive</h3>
+            <p class="mode-desc">Pure distance. Your best carry in a 5-minute window. Bomb it and let Toptracer do the measuring.</p>
+            <div class="mode-meta">
+              <span class="mode-tag">$3–$10 ENTRY</span>
+              <span class="mode-tag">5 MIN</span>
+              <span class="mode-tag">ALL FLIGHTS</span>
+            </div>
+          </div>
+        </div>
+        <div class="mode-card fade-up fade-up-delay-3">
+          <div class="mode-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <path d="M3 17l4-8 4 4 4-6 4 10"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="mode-name">Course Round</h3>
+            <p class="mode-desc">Play 9 or 18 holes on Toptracer's virtual courses. Compete on net score with full handicap adjustment.</p>
+            <div class="mode-meta">
+              <span class="mode-tag">$5–$50 ENTRY</span>
+              <span class="mode-tag">9 OR 18 HOLES</span>
+              <span class="mode-tag">NET SCORE</span>
+            </div>
+          </div>
+        </div>
+        <div class="mode-card fade-up fade-up-delay-4">
+          <div class="mode-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+              <polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="mode-name">SUNDAY Game</h3>
+            <p class="mode-desc">The full experience. 20-minute window, multiple game types combined. The biggest weekly prize pool.</p>
+            <div class="mode-meta">
+              <span class="mode-tag">$5–$50 ENTRY</span>
+              <span class="mode-tag">20 MIN</span>
+              <span class="mode-tag">ALL FLIGHTS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLIGHTS -->
+  <section class="flights-section">
+    <div class="container">
+      <div class="flights-header fade-up">
+        <p class="section-eyebrow" style="color: rgba(255,255,255,0.4);">GHIN-VERIFIED FLIGHTS</p>
+        <h2 class="section-title light">Fair at every level.</h2>
+        <p class="section-sub light">Every player competes in their verified handicap flight. A scratch golfer never competes against a 20-handicapper. Ever.</p>
+      </div>
+      <div class="flights-grid">
+        <div class="flight-card" style="background: rgba(185,28,28,0.15); border-color: rgba(185,28,28,0.3);">
+          <div class="flight-name">Pro Flight</div>
+          <div class="flight-range">+4 to 0</div>
+          <div class="flight-badge" style="background: var(--red);">PRO</div>
+        </div>
+        <div class="flight-card" style="background: rgba(30,58,95,0.4); border-color: rgba(30,58,95,0.6);">
+          <div class="flight-name">Elite Flight</div>
+          <div class="flight-range">1 to 12</div>
+          <div class="flight-badge" style="background: #1E3A5F;">ELITE</div>
+        </div>
+        <div class="flight-card" style="background: rgba(28,25,23,0.5); border-color: rgba(255,255,255,0.12);">
+          <div class="flight-name">Mid Amateur</div>
+          <div class="flight-range">13 to 20</div>
+          <div class="flight-badge" style="background: #1C1917;">MID AM</div>
+        </div>
+        <div class="flight-card" style="background: rgba(92,61,46,0.3); border-color: rgba(92,61,46,0.5);">
+          <div class="flight-name">Amateur</div>
+          <div class="flight-range">21 to 28</div>
+          <div class="flight-badge" style="background: #5C3D2E;">AMATEUR</div>
+        </div>
+        <div class="flight-card" style="background: rgba(59,74,47,0.3); border-color: rgba(59,74,47,0.5);">
+          <div class="flight-name">Recreational</div>
+          <div class="flight-range">29+</div>
+          <div class="flight-badge" style="background: #3B4A2F;">REC</div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: center; margin-top: 48px;">
+        <div class="ghin-badge fade-up">
+          <div class="ghin-dot"></div>
+          <span class="ghin-text">OFFICIALLY VERIFIED BY USGA GHIN — HANDICAP INDEX REQUIRED</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYOUT -->
+  <section class="payout-section">
+    <div class="payout-left fade-up">
+      <p class="section-eyebrow">SUNDAY PAYOUT STRUCTURE</p>
+      <h2 class="payout-title">Top 15<br /><span>Get Paid.</span></h2>
+      <p class="payout-sub">First place takes 30% of the prize pool. 15 spots pay out every Sunday night at 11:59 PM PT. No subscription. No ads. Pure competition.</p>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; margin-top: 8px;">
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: var(--red);">15%</div>
+          <div style="font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 1px;">PLATFORM RAKE</div>
+        </div>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: var(--text);">85%</div>
+          <div style="font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 1px;">BACK TO PLAYERS</div>
+        </div>
+        <div>
+          <div style="font-family: 'Space Mono', monospace; font-size: 28px; font-weight: 700; color: var(--text);">3</div>
+          <div style="font-size: 11px; color: var(--muted); font-weight: 700; letter-spacing: 1px;">MAX ENTRIES</div>
+        </div>
+      </div>
+    </div>
+    <div class="payout-right fade-up fade-up-delay-2">
+      <p class="payout-table-title">PAYOUT STRUCTURE — PER FLIGHT</p>
+      <div class="payout-row">
+        <div class="payout-pos first">1st</div>
+        <div class="payout-label">1st Place</div>
+        <div class="payout-pct">30%</div>
+        <div class="payout-bar-wrap"><div class="payout-bar-fill" style="width:100%"></div></div>
+      </div>
+      <div class="payout-row">
+        <div class="payout-pos other">2nd</div>
+        <div class="payout-label">2nd Place</div>
+        <div class="payout-pct">18%</div>
+        <div class="payout-bar-wrap"><div class="payout-bar-fill" style="width:60%; background: rgba(255,255,255,0.25)"></div></div>
+      </div>
+      <div class="payout-row">
+        <div class="payout-pos other">3rd</div>
+        <div class="payout-label">3rd Place</div>
+        <div class="payout-pct">12%</div>
+        <div class="payout-bar-wrap"><div class="payout-bar-fill" style="width:40%; background: rgba(255,255,255,0.2)"></div></div>
+      </div>
+      <div class="payout-row">
+        <div class="payout-pos other">4th</div>
+        <div class="payout-label">4th Place</div>
+        <div class="payout-pct">8%</div>
+        <div class="payout-bar-wrap"><div class="payout-bar-fill" style="width:27%; background: rgba(255,255,255,0.15)"></div></div>
+      </div>
+      <div class="payout-row">
+        <div class="payout-pos other">5th</div>
+        <div class="payout-label">5th Place</div>
+        <div class="payout-pct">6%</div>
+        <div class="payout-bar-wrap"><div class="payout-bar-fill" style="width:20%; background: rgba(255,255,255,0.12)"></div></div>
+      </div>
+      <div class="payout-row">
+        <div class="payout-pos other" style="font-size:9px; width:42px;">6–10</div>
+        <div class="payout-label">6th–10th</div>
+        <div class="payout-pct">3% ea</div>
+        <div class="payout-bar-wrap"><div class="payout-bar-fill" style="width:10%; background: rgba(255,255,255,0.08)"></div></div>
+      </div>
+      <div class="payout-row">
+        <div class="payout-pos other" style="font-size:9px; width:42px;">11–15</div>
+        <div class="payout-label">11th–15th</div>
+        <div class="payout-pct">1% ea</div>
+        <div class="payout-bar-wrap"><div class="payout-bar-fill" style="width:4%; background: rgba(255,255,255,0.06)"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PERFORMANCE -->
+  <section class="perf-section">
+    <div class="container">
+      <div class="perf-header fade-up">
+        <p class="section-eyebrow">PERFORMANCE ANALYTICS</p>
+        <h2 class="section-title light">Know your game<br />like never before.</h2>
+        <p class="section-sub light">Every Toptracer session feeds your Sunday performance dashboard. Shot dispersion, club distances, consistency scores, trend lines — all in one place.</p>
+      </div>
+      <div class="perf-grid">
+        <div class="perf-card fade-up fade-up-delay-1">
+          <img src="images/IMG_2301.png" alt="Performance Overview" />
+          <div class="perf-card-label">Overview & Trends</div>
+        </div>
+        <div class="perf-card fade-up fade-up-delay-2">
+          <img src="images/IMG_2302.png" alt="Shot Accuracy" />
+          <div class="perf-card-label">Shot Dispersion Map</div>
+        </div>
+        <div class="perf-card fade-up fade-up-delay-3">
+          <img src="images/IMG_2303.png" alt="Distance" />
+          <div class="perf-card-label">Distance by Club</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WAITLIST -->
+  <section class="waitlist-section" id="waitlist">
+    <div class="container">
+      <p class="section-eyebrow">EARLY ACCESS</p>
+      <h2 class="section-title">Be first on<br />the leaderboard.</h2>
+      <p class="section-sub">Sunday launches soon at Topgolf and Toptracer ranges. Join the waitlist and get early access when we go live.</p>
+      <form class="waitlist-form" onsubmit="handleWaitlist(event)">
+        <input
+          type="email"
+          class="waitlist-input"
+          placeholder="your@email.com"
+          required
+          id="waitlist-email"
+        />
+        <button type="submit" class="waitlist-btn">JOIN WAITLIST</button>
+      </form>
+      <p class="waitlist-note" id="waitlist-msg">No spam. Just a heads up when Sunday goes live near you.</p>
+      <div class="waitlist-platforms">
+        <div class="platform-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          iOS App — Coming Soon
+        </div>
+        <div class="platform-badge">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M3 18.5v-13c0-.83 1-.83 1.5-.5l11 6.5c.5.29.5 1.21 0 1.5l-11 6.5c-.5.33-1.5.33-1.5-.5z"/></svg>
+          Topgolf Seattle — First Market
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">
+      <img src="images/IMG_2290.png" alt="Sunday" style="border-radius:8px;" />
+      <span class="footer-logo-text">SUNDAY</span>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:alvin@playsunday.golf">alvin@playsunday.golf</a>
+      <a href="#how">How It Works</a>
+      <a href="#waitlist">Join Waitlist</a>
+      <a href="mailto:alvin@playsunday.golf">Contact</a>
+    </div>
+    <div class="footer-bottom">
+      <p style="margin-bottom: 8px;">
+        Sunday is a skill-based competition platform. Not gambling.
+        Legal in skill-based contest states. Please check your local laws.
+      </p>
+      <p>© 2026 Sunday Golf LLC · playsunday.golf · Mukilteo, WA</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Waitlist form
+    function handleWaitlist(e) {
+      e.preventDefault();
+      const email = document.getElementById('waitlist-email').value;
+      const msg = document.getElementById('waitlist-msg');
+      const btn = e.target.querySelector('button');
+
+      btn.textContent = 'YOU\'RE IN ✓';
+      btn.style.background = '#15803D';
+      btn.style.color = 'white';
+      msg.textContent = `${email} is on the list. We'll be in touch when Sunday goes live near you.`;
+      msg.style.color = 'rgba(255,255,255,0.8)';
+      document.getElementById('waitlist-email').value = '';
+    }
+
+    // Smooth scroll for anchors
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
