@@ -436,7 +436,7 @@ let htTimer;
 htInput.addEventListener('input', () => {
   clearTimeout(htTimer);
   const q = htInput.value.trim();
-  if(q.length < 3){ suggestions.style.display='none'; return; }
+  if(q.length < 2){ suggestions.style.display='none'; return; }
   htTimer = setTimeout(async () => {
     const res = await fetch(`https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&addressdetails=1&limit=5&countrycodes=us`);
     const data = await res.json();
@@ -447,7 +447,7 @@ htInput.addEventListener('input', () => {
       return `<div style="padding:12px 16px;cursor:pointer;font-size:14px;color:#fff;border-bottom:1px solid rgba(255,255,255,0.06)" onmouseover="this.style.background='rgba(185,28,28,0.15)'" onmouseout="this.style.background=''" onclick="htInput.value='${city}, ${state}';suggestions.style.display='none'">${city}, ${state}</div>`;
     }).join('');
     suggestions.style.display='block';
-  }, 300);
+  }, 100);
 });
 document.addEventListener('click', e => { if(!htInput.contains(e.target)) suggestions.style.display='none'; });
 </script>
