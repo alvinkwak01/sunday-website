@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sunday — The Range Survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;-webkit-font-smoothing:antialiased}
+    body{font-family:'Inter',sans-serif;background:#080808;color:#ffffff;overflow:hidden}
+
+    #progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.07);z-index:200}
+    #progress-fill{height:100%;background:#B91C1C;width:0%;transition:width 0.4s ease}
+
+    #nav{
+      position:fixed;top:0;left:0;right:0;z-index:100;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 40px;height:64px;
+      background:rgba(8,8,8,0.96);
+      border-bottom:1px solid rgba(255,255,255,0.05);
+    }
+    .nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:2px}
+    .nav-logo em{color:#B91C1C;font-style:normal}
+    #nav-label{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.28);letter-spacing:1px}
+
+    #wrap{position:fixed;top:64px;left:0;right:0;bottom:0;overflow:hidden}
+
+    .slide{
+      position:absolute;inset:0;
+      display:flex;align-items:center;justify-content:center;
+      padding:32px 24px;
+      opacity:0;transform:translateX(60px);
+      transition:opacity 0.33s ease,transform 0.33s ease;
+      pointer-events:none;overflow-y:auto;
+    }
+    .slide.active{opacity:1;transform:none;pointer-events:all}
+    .slide.out{opacity:0;transform:translateX(-60px)}
+
+    .inner{width:100%;max-width:600px;margin:0 auto}
+
+    /* Eyebrow */
+    .ey{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(185,28,28,0.1);border:1px solid rgba(185,28,28,0.22);
+      border-radius:30px;padding:7px 18px;
+      font-size:10px;font-weight:800;letter-spacing:2.5px;color:#B91C1C;
+      margin-bottom:28px;
+    }
+    .blink{width:6px;height:6px;border-radius:50%;background:#B91C1C;animation:bl 2s infinite}
+    @keyframes bl{0%,100%{opacity:1}50%{opacity:0.15}}
+
+    .qn{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:3px;color:#B91C1C;margin-bottom:14px}
+    .qt{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,40px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:10px}
+    .qs{font-size:15px;color:rgba(255,255,255,0.38);line-height:1.65;margin-bottom:28px}
+
+    .opts{display:flex;flex-direction:column;gap:10px}
+    .opt{
+      display:flex;align-items:center;gap:14px;
+      background:rgba(255,255,255,0.045);
+      border:1.5px solid rgba(255,255,255,0.08);
+      border-radius:13px;padding:15px 18px;
+      cursor:pointer;transition:all 0.15s;
+      text-align:left;width:100%;font-family:'Inter',sans-serif;
+    }
+    .opt:hover{background:rgba(255,255,255,0.085);border-color:rgba(255,255,255,0.16);transform:translateY(-1px)}
+    .opt.sel{background:rgba(185,28,28,0.13);border-color:rgba(185,28,28,0.45)}
+    .ok{
+      width:30px;height:30px;border-radius:8px;flex-shrink:0;
+      background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+      display:flex;align-items:center;justify-content:center;
+      font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
+      color:rgba(255,255,255,0.38);transition:all 0.15s;
+    }
+    .opt.sel .ok{background:#B91C1C;border-color:#B91C1C;color:#fff}
+    .ot{font-size:15px;font-weight:500;color:rgba(255,255,255,0.78);line-height:1.4;flex:1}
+    .oi{font-size:18px;margin-left:auto;flex-shrink:0}
+
+    .hg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+    .hc{
+      background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
+      border-radius:12px;padding:13px 8px;text-align:center;cursor:pointer;transition:all 0.15s;
+    }
+    .hc:hover{background:rgba(255,255,255,0.085);transform:translateY(-2px)}
+    .hc.sel{background:rgba(185,28,28,0.13);border-color:rgba(185,28,28,0.45)}
+    .hr{display:block;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#fff;margin-bottom:3px}
+    .hl{display:block;font-size:10px;font-weight:600;color:rgba(255,255,255,0.32);letter-spacing:0.3px}
+
+    textarea.ta{
+      width:100%;background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
+      border-radius:13px;padding:16px 18px;font-size:15px;color:#fff;
+      font-family:'Inter',sans-serif;outline:none;resize:none;transition:border-color 0.2s;line-height:1.6;
+    }
+    textarea.ta::placeholder{color:rgba(255,255,255,0.18)}
+    textarea.ta:focus{border-color:rgba(185,28,28,0.4)}
+
+    .irow{display:flex;gap:12px;margin-bottom:13px}
+    .iw{flex:1}
+    .il{display:block;font-size:10px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.28);margin-bottom:7px;text-transform:uppercase}
+    .inp{
+      width:100%;background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
+      border-radius:12px;padding:13px 16px;font-size:15px;color:#fff;
+      font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;
+    }
+    .inp::placeholder{color:rgba(255,255,255,0.18)}
+    .inp:focus{border-color:rgba(185,28,28,0.4)}
+
+    .grow{display:flex;gap:10px;margin-top:0}
+    .gb{
+      flex:1;background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
+      border-radius:12px;padding:12px 8px;font-size:13px;font-weight:600;
+      color:rgba(255,255,255,0.48);cursor:pointer;text-align:center;transition:all 0.15s;
+      font-family:'Inter',sans-serif;
+    }
+    .gb:hover{background:rgba(255,255,255,0.085)}
+    .gb.sel{background:rgba(185,28,28,0.13);border-color:rgba(185,28,28,0.45);color:#fff}
+
+    .bn{
+      display:block;background:#B91C1C;color:#fff;
+      font-size:12px;font-weight:800;letter-spacing:2.5px;
+      padding:15px 40px;border-radius:12px;border:none;cursor:pointer;
+      box-shadow:0 8px 28px rgba(185,28,28,0.38);
+      transition:all 0.2s;margin-top:26px;font-family:'Inter',sans-serif;
+    }
+    .bn:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(185,28,28,0.52)}
+    .bn:disabled{opacity:0.22;cursor:not-allowed;transform:none;box-shadow:none}
+    .bs{
+      display:block;background:none;border:none;cursor:pointer;
+      font-size:12px;color:rgba(255,255,255,0.2);font-weight:600;
+      letter-spacing:1px;margin-top:11px;transition:color 0.2s;font-family:'Inter',sans-serif;
+    }
+    .bs:hover{color:rgba(255,255,255,0.48)}
+
+    /* Intro */
+    .it{font-family:'Playfair Display',serif;font-size:clamp(46px,8vw,82px);font-weight:900;color:#fff;line-height:0.93;letter-spacing:-3px;margin-bottom:12px}
+    .it em{font-style:italic;color:#B91C1C;display:block}
+    .is{font-size:17px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:440px;margin-bottom:36px}
+    .is strong{color:rgba(255,255,255,0.7);font-weight:600}
+    .im{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.22);font-weight:600;margin-top:20px}
+    .ms{color:rgba(255,255,255,0.1)}
+
+    /* Thanks */
+    .thi{width:68px;height:68px;border-radius:18px;background:rgba(185,28,28,0.1);border:1px solid rgba(185,28,28,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+    .tht{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,50px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-1.5px;margin-bottom:12px}
+    .tht em{font-style:italic;color:#B91C1C}
+    .ths{font-size:15px;color:rgba(255,255,255,0.38);line-height:1.7;max-width:400px;margin-bottom:28px}
+    .thb{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 20px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.38)}
+    .gd{width:7px;height:7px;border-radius:50%;background:#4ADE80}
+
+    #kh{position:fixed;bottom:26px;right:28px;display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.16);font-weight:600;pointer-events:none}
+    .kk{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 8px;font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,0.28)}
+
+    /* Netlify hidden form */
+    #netlify-form{display:none}
+
+    @media(max-width:580px){
+      #nav{padding:0 20px}
+      .hg{grid-template-columns:repeat(2,1fr)}
+      .irow{flex-direction:column}
+      #kh{display:none}
+    }
+  </style>
+</head>
+<body>
+
+<!-- Hidden Netlify form for data capture -->
+<form id="netlify-form" name="sunday-survey" netlify netlify-honeypot="bot-field" hidden>
+  <input name="bot-field"/>
+  <input name="q1_frequency"/><input name="q2_session"/><input name="q3_improvement"/>
+  <input name="q4_stakes"/><input name="q5_pay"/><input name="q6_toptracer_access"/>
+  <input name="q7_toptracer_used"/><input name="q8_open_text"/><input name="q9_handicap"/>
+  <input name="firstName"/><input name="email"/><input name="hometown"/><input name="ghin"/>
+</form>
+
+<div id="progress-bar"><div id="progress-fill"></div></div>
+
+<div id="nav">
+  <div class="nav-logo">SUN<em>DAY</em></div>
+  <div id="nav-label">The Range Survey</div>
+</div>
+
+<div id="wrap">
+
+  <!-- 0: Intro -->
+  <div class="slide active" id="s0">
+    <div class="inner">
+      <div class="ey"><div class="blink"></div>2 MINUTES · 9 QUESTIONS</div>
+      <h1 class="it">Tell us about<em>your range.</em></h1>
+      <p class="is">No right or wrong answers. Just <strong>honest thoughts</strong> from a golfer who's been there.</p>
+      <button class="bn" onclick="go(1)">LET'S GO →</button>
+      <div class="im">Anonymous <span class="ms">·</span> 9 questions <span class="ms">·</span> ~2 minutes</div>
+    </div>
+  </div>
+
+  <!-- 1: Frequency -->
+  <div class="slide" id="s1">
+    <div class="inner">
+      <div class="qn">01 / 09</div>
+      <h2 class="qt">How often do you hit balls at the range?</h2>
+      <p class="qs">Pick the one that fits your usual routine.</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q1_frequency',this,'4x+',true)"><div class="ok">A</div><div class="ot">4 or more times a month</div><div class="oi">🔥</div></button>
+        <button class="opt" onclick="pick('q1_frequency',this,'2-3x',true)"><div class="ok">B</div><div class="ot">2–3 times a month</div></button>
+        <button class="opt" onclick="pick('q1_frequency',this,'once',true)"><div class="ok">C</div><div class="ot">About once a month</div></button>
+        <button class="opt" onclick="pick('q1_frequency',this,'rarely',true)"><div class="ok">D</div><div class="ot">Rarely — I mostly just play courses</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2: Session type -->
+  <div class="slide" id="s2">
+    <div class="inner">
+      <div class="qn">02 / 09</div>
+      <h2 class="qt">How would you describe a typical range session?</h2>
+      <p class="qs">Be honest. Nobody's watching.</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q2_session',this,'purposeful',true)"><div class="ok">A</div><div class="ot">Purposeful — I have a plan and I work it</div><div class="oi">🎯</div></button>
+        <button class="opt" onclick="pick('q2_session',this,'casual',true)"><div class="ok">B</div><div class="ot">Casual — I hit balls and enjoy it</div></button>
+        <button class="opt" onclick="pick('q2_session',this,'repetitive',true)"><div class="ok">C</div><div class="ot">Repetitive — feels the same every time</div></button>
+        <button class="opt" onclick="pick('q2_session',this,'unfulfilling',true)"><div class="ok">D</div><div class="ot">Unfulfilling — hits well but never translates to the course</div><div class="oi">😤</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3: Improvement -->
+  <div class="slide" id="s3">
+    <div class="inner">
+      <div class="qn">03 / 09</div>
+      <h2 class="qt">Do your range sessions actually improve your game?</h2>
+      <p class="qs">Real talk.</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q3_improvement',this,'yes',true)"><div class="ok">A</div><div class="ot">Yes — I see it on the course</div><div class="oi">✅</div></button>
+        <button class="opt" onclick="pick('q3_improvement',this,'sometimes',true)"><div class="ok">B</div><div class="ot">Sometimes — it's hard to tell</div></button>
+        <button class="opt" onclick="pick('q3_improvement',this,'range-pro',true)"><div class="ok">C</div><div class="ot">I'm a different golfer on the range than the course</div><div class="oi">😅</div></button>
+        <button class="opt" onclick="pick('q3_improvement',this,'no',true)"><div class="ok">D</div><div class="ot">Honestly? Not really.</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4: Stakes -->
+  <div class="slide" id="s4">
+    <div class="inner">
+      <div class="qn">04 / 09</div>
+      <h2 class="qt">Have you ever wished there were actual stakes at the range?</h2>
+      <p class="qs">Competition. Something on the line. A reason to care about each shot.</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q4_stakes',this,'yes',true)"><div class="ok">A</div><div class="ot">Yes — I've thought about this a lot</div><div class="oi">🙋</div></button>
+        <button class="opt" onclick="pick('q4_stakes',this,'sometimes',true)"><div class="ok">B</div><div class="ot">Sometimes — especially when hitting well</div></button>
+        <button class="opt" onclick="pick('q4_stakes',this,'maybe',true)"><div class="ok">C</div><div class="ot">Maybe — never really thought about it</div></button>
+        <button class="opt" onclick="pick('q4_stakes',this,'no',true)"><div class="ok">D</div><div class="ot">No — the range should be low pressure</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5: Pay -->
+  <div class="slide" id="s5">
+    <div class="inner">
+      <div class="qn">05 / 09</div>
+      <h2 class="qt">Would you pay a small fee to compete in a real-money tournament at the range?</h2>
+      <p class="qs">Against players at your exact skill level. Best shot wins cash.</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q5_pay',this,'yes',true)"><div class="ok">A</div><div class="ot">Yes — take my money right now</div><div class="oi">💰</div></button>
+        <button class="opt" onclick="pick('q5_pay',this,'probably',true)"><div class="ok">B</div><div class="ot">Probably — depends on the entry fee</div></button>
+        <button class="opt" onclick="pick('q5_pay',this,'maybe',true)"><div class="ok">C</div><div class="ot">Maybe — I'd want to try it first</div></button>
+        <button class="opt" onclick="pick('q5_pay',this,'no',true)"><div class="ok">D</div><div class="ot">No — I don't gamble on golf</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6: Toptracer access -->
+  <div class="slide" id="s6">
+    <div class="inner">
+      <div class="qn">06 / 09</div>
+      <h2 class="qt">Do you have access to a Toptracer range near you?</h2>
+      <p class="qs">Toptracer is ball-tracking technology available at Topgolf and hundreds of other ranges.</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q6_toptracer_access',this,'topgolf',true)"><div class="ok">A</div><div class="ot">Yes — I go to Topgolf</div><div class="oi">🏌️</div></button>
+        <button class="opt" onclick="pick('q6_toptracer_access',this,'nearby',true)"><div class="ok">B</div><div class="ot">Yes — there's a Toptracer range nearby</div></button>
+        <button class="opt" onclick="pick('q6_toptracer_access',this,'not-sure',true)"><div class="ok">C</div><div class="ot">Not sure — I'd have to check</div></button>
+        <button class="opt" onclick="pick('q6_toptracer_access',this,'no',true)"><div class="ok">D</div><div class="ot">No — not near me</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7: Toptracer used -->
+  <div class="slide" id="s7">
+    <div class="inner">
+      <div class="qn">07 / 09</div>
+      <h2 class="qt">Have you actually used Toptracer Range?</h2>
+      <p class="qs">The ball-tracking games and shot data on the bay screens.</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q7_toptracer_used',this,'regularly',true)"><div class="ok">A</div><div class="ot">Yes — I use it regularly</div><div class="oi">⛳</div></button>
+        <button class="opt" onclick="pick('q7_toptracer_used',this,'few-times',true)"><div class="ok">B</div><div class="ot">Yes — a few times</div></button>
+        <button class="opt" onclick="pick('q7_toptracer_used',this,'once',true)"><div class="ok">C</div><div class="ot">Once or twice</div></button>
+        <button class="opt" onclick="pick('q7_toptracer_used',this,'never',true)"><div class="ok">D</div><div class="ot">Never used it</div></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8: Open text -->
+  <div class="slide" id="s8">
+    <div class="inner">
+      <div class="qn">08 / 09</div>
+      <h2 class="qt">What would make you visit the range more often?</h2>
+      <p class="qs">Open answer — whatever comes to mind.</p>
+      <textarea class="ta" id="q8text" rows="4" placeholder="e.g. competition, better feedback, something to track progress..."></textarea>
+      <button class="bn" onclick="go(9)">NEXT →</button>
+      <button class="bs" onclick="go(9)">Skip this one</button>
+    </div>
+  </div>
+
+  <!-- 9: Handicap -->
+  <div class="slide" id="s9">
+    <div class="inner">
+      <div class="qn">09 / 09</div>
+      <h2 class="qt">What's your handicap?</h2>
+      <p class="qs">Be honest — this is just for data. No judgment here.</p>
+      <div class="hg">
+        <div class="hc" onclick="pickH(this,'+4 to 0')"><span class="hr">+4 – 0</span><span class="hl">Pro/Scratch</span></div>
+        <div class="hc" onclick="pickH(this,'1-6')"><span class="hr">1 – 6</span><span class="hl">Elite</span></div>
+        <div class="hc" onclick="pickH(this,'7-12')"><span class="hr">7 – 12</span><span class="hl">Strong</span></div>
+        <div class="hc" onclick="pickH(this,'13-18')"><span class="hr">13 – 18</span><span class="hl">Mid Am</span></div>
+        <div class="hc" onclick="pickH(this,'19-24')"><span class="hr">19 – 24</span><span class="hl">Amateur</span></div>
+        <div class="hc" onclick="pickH(this,'25-30')"><span class="hr">25 – 30</span><span class="hl">Casual</span></div>
+        <div class="hc" onclick="pickH(this,'30+')"><span class="hr">30+</span><span class="hl">Recreational</span></div>
+        <div class="hc" onclick="pickH(this,'none')"><span class="hr">—</span><span class="hl">No Handicap</span></div>
+      </div>
+      <button class="bn" id="btn9" onclick="go(10)" disabled>ALMOST DONE →</button>
+    </div>
+  </div>
+
+  <!-- 10: Contact -->
+  <div class="slide" id="s10">
+    <div class="inner">
+      <div class="qn">LAST STEP</div>
+      <h2 class="qt">Want early access to <em style="font-style:italic;color:#B91C1C">Sunday?</em></h2>
+      <p class="qs">Leave your details and you'll be first when we launch at your range. Completely optional.</p>
+      <div class="irow">
+        <div class="iw"><label class="il">First Name</label><input type="text" class="inp" id="fn" placeholder="Alvin" autocomplete="given-name"/></div>
+        <div class="iw"><label class="il">Email</label><input type="email" class="inp" id="em" placeholder="you@email.com" autocomplete="email"/></div>
+      </div>
+      <div class="iw" style="margin-bottom:14px">
+        <label class="il">Hometown</label>
+        <input type="text" class="inp" id="ht" placeholder="Seattle, WA" style="width:100%" autocomplete="address-level2"/>
+      </div>
+      <div class="iw">
+        <label class="il" style="margin-bottom:10px;display:block">Do you have a GHIN number?</label>
+        <div class="grow">
+          <button class="gb" onclick="pickG(this,'yes')">Yes I do ✓</button>
+          <button class="gb" onclick="pickG(this,'no')">Not yet</button>
+          <button class="gb" onclick="pickG(this,'what')">What's GHIN?</button>
+        </div>
+      </div>
+      <button class="bn" onclick="finish()">SUBMIT →</button>
+      <button class="bs" onclick="go(11)">Skip — just submit my answers</button>
+    </div>
+  </div>
+
+  <!-- 11: Thanks -->
+  <div class="slide" id="s11">
+    <div class="inner" style="text-align:center">
+      <div class="thi">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h2 class="tht">You're on the<em>leaderboard.</em></h2>
+      <p class="ths">Your answers help us build the range experience golfers actually deserve. We'll reach out when Sunday comes to your range.</p>
+      <div class="thb"><div class="gd"></div>Response recorded · playsunday.golf</div>
+    </div>
+  </div>
+
+</div>
+
+<div id="kh"><span>Press</span><span class="kk">Enter</span><span>to continue</span></div>
+
+<script>
+  const TOTAL = 12;
+  let cur = 0;
+  const ans = {};
+  let ghinVal = null;
+
+  function updateUI() {
+    document.getElementById('progress-fill').style.width = (cur/(TOTAL-1)*100)+'%';
+    const lbl = document.getElementById('nav-label');
+    if(cur===0) lbl.textContent='The Range Survey';
+    else if(cur===11) lbl.textContent='Done ✓';
+    else lbl.textContent='Question '+cur+' of 9';
+  }
+
+  function go(n) {
+    const from = document.getElementById('s'+cur);
+    from.classList.add('out');
+    setTimeout(()=>{
+      from.classList.remove('active','out');
+      cur=n;
+      document.getElementById('s'+cur).classList.add('active');
+      updateUI();
+    },300);
+  }
+
+  function pick(key,el,val,auto) {
+    el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
+    el.classList.add('sel');
+    ans[key]=val;
+    if(auto) setTimeout(()=>go(cur+1),360);
+  }
+
+  function pickH(el,val) {
+    document.querySelectorAll('#s9 .hc').forEach(c=>c.classList.remove('sel'));
+    el.classList.add('sel');
+    ans.q9_handicap=val;
+    document.getElementById('btn9').disabled=false;
+  }
+
+  function pickG(btn,val) {
+    document.querySelectorAll('.gb').forEach(b=>b.classList.remove('sel'));
+    btn.classList.add('sel');
+    ghinVal=val;
+  }
+
+  function finish() {
+    ans.firstName=document.getElementById('fn').value;
+    ans.email=document.getElementById('em').value;
+    ans.hometown=document.getElementById('ht').value;
+    ans.ghin=ghinVal||'not answered';
+
+    // Submit to Netlify
+    const form = document.getElementById('netlify-form');
+    const fd = new FormData();
+    fd.append('form-name','sunday-survey');
+    Object.keys(ans).forEach(k=>fd.append(k,ans[k]||''));
+    fd.append('q8_open_text',document.getElementById('q8text').value||'');
+
+    fetch('/',{method:'POST',body:fd})
+      .catch(()=>{})
+      .finally(()=>go(11));
+  }
+
+  document.addEventListener('keydown',e=>{
+    if(e.key==='Enter'){
+      if(cur===0) go(1);
+      if(cur===8) go(9);
+    }
+  });
+
+  updateUI();
+</script>
+</body>
+</html>

@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sunday — We Changed Your Range.</title>
+  <meta name="description" content="Sunday is the first skill-based competition platform for driving range golfers. Real-money tournaments. GHIN-verified flights. Toptracer-powered."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--cream:#F5F0E8;--card:#FDFCF8;--red:#B91C1C;--black:#080808;--dark:#111111;--text:#111111;--muted:#777}
+    html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+    body{font-family:'Inter',sans-serif;background:var(--black);color:#fff;overflow-x:hidden}
+    ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--black)}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
+
+    nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 48px;height:68px;background:rgba(8,8,8,0.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);transition:all 0.3s}
+    .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .nav-dog{width:36px;height:36px;border-radius:10px;overflow:hidden;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+    .nav-dog img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+    .nav-wordmark{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:2px}
+    .nav-wordmark em{color:var(--red);font-style:normal}
+    .nav-right{display:flex;align-items:center;gap:12px}
+    .nav-badge{font-size:9px;font-weight:800;letter-spacing:2.5px;color:rgba(255,255,255,0.3);border:1px solid rgba(255,255,255,0.1);padding:5px 12px;border-radius:20px}
+    .nav-btn{background:var(--red);color:#fff;font-size:11px;font-weight:800;letter-spacing:2px;padding:10px 22px;border-radius:10px;text-decoration:none;box-shadow:0 4px 20px rgba(185,28,28,0.35);transition:all 0.2s}
+    .nav-btn:hover{transform:translateY(-1px);box-shadow:0 8px 30px rgba(185,28,28,0.5)}
+
+    .hero{min-height:100vh;background:var(--black);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 24px 60px;position:relative;overflow:hidden}
+    .hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)}
+    .hero-glow{position:absolute;top:35%;left:50%;transform:translate(-50%,-50%);width:700px;height:700px;background:radial-gradient(circle,rgba(185,28,28,0.13) 0%,transparent 70%);pointer-events:none}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse at center,black 0%,transparent 65%);mask-image:radial-gradient(ellipse at center,black 0%,transparent 65%)}
+    .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(185,28,28,0.1);border:1px solid rgba(185,28,28,0.25);border-radius:30px;padding:8px 20px;font-size:10px;font-weight:800;letter-spacing:2.5px;color:var(--red);margin-bottom:36px;position:relative;z-index:1}
+    .hero-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 2s infinite}
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+    .hero h1{font-family:'Playfair Display',serif;font-size:clamp(54px,8vw,110px);font-weight:900;color:#fff;line-height:0.95;letter-spacing:-3px;margin-bottom:8px;position:relative;z-index:1}
+    .hero h1 em{font-style:italic;color:var(--red);display:block}
+    .hero-sub-tag{font-size:10px;font-weight:800;letter-spacing:5px;color:rgba(255,255,255,0.2);margin:20px 0 32px;position:relative;z-index:1}
+    .hero-desc{font-size:17px;line-height:1.75;color:rgba(255,255,255,0.42);max-width:480px;margin:0 auto 48px;position:relative;z-index:1}
+    .hero-desc strong{color:rgba(255,255,255,0.72);font-weight:600}
+    .hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:80px;position:relative;z-index:1}
+    .btn-r{background:var(--red);color:#fff;font-size:12px;font-weight:800;letter-spacing:2.5px;padding:16px 36px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(185,28,28,0.4);transition:all 0.2s}
+    .btn-r:hover{transform:translateY(-2px);box-shadow:0 14px 44px rgba(185,28,28,0.55)}
+    .btn-o{background:transparent;color:rgba(255,255,255,0.55);font-size:12px;font-weight:700;letter-spacing:2px;padding:16px 36px;border-radius:12px;text-decoration:none;border:1px solid rgba(255,255,255,0.14);transition:all 0.2s}
+    .btn-o:hover{border-color:rgba(255,255,255,0.3);color:#fff}
+    .hero-phones{display:flex;align-items:flex-end;justify-content:center;gap:20px;position:relative;z-index:1}
+    .ph{border-radius:40px;overflow:hidden;box-shadow:0 50px 100px rgba(0,0,0,0.8),0 0 0 1px rgba(255,255,255,0.07)}
+    .ph img{display:block;width:100%}
+    .ph-c{width:210px;position:relative;z-index:3}
+    .ph-s{width:175px;opacity:0.6;box-shadow:0 30px 60px rgba(0,0,0,0.7),0 0 0 1px rgba(255,255,255,0.05)}
+    .ph-l{transform:rotate(-8deg) translateY(20px)}
+    .ph-r{transform:rotate(8deg) translateY(20px)}
+
+    .ticker{background:rgba(185,28,28,0.07);border-top:1px solid rgba(185,28,28,0.15);border-bottom:1px solid rgba(185,28,28,0.15);padding:14px 0;overflow:hidden;white-space:nowrap}
+    .ticker-inner{display:inline-flex;animation:tick 35s linear infinite}
+    @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .ti{font-size:10px;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,0.25);padding:0 36px}
+    .ti span{color:var(--red)}
+
+    .stats{display:grid;grid-template-columns:repeat(4,1fr);background:rgba(255,255,255,0.02);border-bottom:1px solid rgba(255,255,255,0.05)}
+    .stat{padding:44px 24px;text-align:center;border-right:1px solid rgba(255,255,255,0.05)}
+    .stat:last-child{border-right:none}
+    .sn{font-family:'Space Mono',monospace;font-size:42px;font-weight:700;color:var(--red);line-height:1;margin-bottom:8px}
+    .sl{font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.28);text-transform:uppercase}
+
+    .sec{padding:120px 48px}
+    .con{max-width:1160px;margin:0 auto}
+    .ey{font-size:9px;font-weight:800;letter-spacing:3px;color:var(--red);margin-bottom:20px;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+    .ey::after{content:'';flex:0 0 32px;height:1px;background:rgba(185,28,28,0.4)}
+    h2{font-family:'Playfair Display',serif;font-size:clamp(38px,4.5vw,60px);font-weight:900;line-height:1.05;letter-spacing:-1.5px;margin-bottom:20px}
+    .lead{font-size:17px;line-height:1.75;color:rgba(255,255,255,0.38);max-width:520px}
+    .lead-d{font-size:17px;line-height:1.75;color:var(--muted);max-width:520px}
+
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .step{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;transition:border-color 0.3s}
+    .step:hover{border-color:rgba(185,28,28,0.35)}
+    .step-top{padding:28px 22px 22px}
+    .snum{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--red);margin-bottom:16px}
+    .sico{width:42px;height:42px;border-radius:12px;background:rgba(185,28,28,0.12);border:1px solid rgba(185,28,28,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+    .sico svg{width:20px;height:20px}
+    .step h3{font-size:16px;font-weight:800;color:#fff;margin-bottom:8px}
+    .step p{font-size:13px;color:rgba(255,255,255,0.32);line-height:1.65}
+    .step-img{border-top:1px solid rgba(255,255,255,0.06)}
+    .step-img img{width:100%;display:block}
+
+    .screens-sec{background:rgba(255,255,255,0.01);padding:100px 0;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);overflow:hidden}
+    .scr-hd{text-align:center;padding:0 48px;margin-bottom:56px}
+    .scr-track{display:flex;gap:16px;padding:16px 48px 36px;overflow-x:auto;scrollbar-width:none;cursor:grab}
+    .scr-track::-webkit-scrollbar{display:none}
+    .scr-track:active{cursor:grabbing}
+    .scr{flex-shrink:0}
+    .scr-fr{width:180px;border-radius:32px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.07);transition:transform 0.3s}
+    .scr-fr:hover{transform:translateY(-10px)}
+    .scr-fr img{width:100%;display:block}
+    .scr-n{font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.2);text-align:center;margin-top:12px;text-transform:uppercase}
+
+    .modes-sec{background:var(--cream)}
+    .modes-sec h2{color:var(--text)}
+    .modes-sec .ey{color:var(--red)}
+    .modes-sec .ey::after{background:rgba(185,28,28,0.4)}
+    .mg{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:52px}
+    .mode{background:var(--card);border:1px solid rgba(0,0,0,0.07);border-radius:20px;padding:30px;display:flex;gap:18px;transition:all 0.25s;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+    .mode:hover{transform:translateY(-4px);box-shadow:0 20px 50px rgba(0,0,0,0.1);border-color:rgba(185,28,28,0.18)}
+    .mico{width:48px;height:48px;flex-shrink:0;border-radius:14px;background:var(--dark);display:flex;align-items:center;justify-content:center}
+    .mico svg{width:22px;height:22px}
+    .mode h3{font-size:18px;font-weight:800;color:var(--text);margin-bottom:8px}
+    .mode p{font-size:13.5px;color:var(--muted);line-height:1.65;margin-bottom:14px}
+    .tags{display:flex;gap:7px;flex-wrap:wrap}
+    .tag{font-size:10px;font-weight:800;letter-spacing:1px;color:var(--red);background:rgba(185,28,28,0.07);border:1px solid rgba(185,28,28,0.14);padding:4px 11px;border-radius:20px}
+
+    .flt-sec{background:var(--dark)}
+    .flt-hd{text-align:center;margin-bottom:60px}
+    .flt-hd .lead{margin:0 auto}
+    .flt-row{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:44px}
+    .flt{border-radius:16px;padding:24px 16px;text-align:center;border:1px solid rgba(255,255,255,0.07);transition:transform 0.2s}
+    .flt:hover{transform:translateY(-4px)}
+    .fn{font-size:14px;font-weight:800;color:#fff;margin-bottom:6px}
+    .fr{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.32);margin-bottom:12px}
+    .fp{font-size:9px;font-weight:800;letter-spacing:1.5px;color:#fff;padding:4px 12px;border-radius:20px;display:inline-block}
+    .gv{display:flex;align-items:center;justify-content:center;gap:10px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 28px;width:fit-content;margin:0 auto}
+    .gvd{width:8px;height:8px;border-radius:50%;background:#4ADE80}
+    .gvt{font-size:11px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.38)}
+
+    .po-sec{background:var(--cream);padding:120px 80px}
+    .po-in{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1160px;margin:0 auto}
+    .po-l h2{color:var(--text);font-size:clamp(50px,5.5vw,76px);margin-bottom:16px}
+    .po-l h2 span{color:var(--red);display:block}
+    .po-l p{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:36px}
+    .po-nums{display:flex;gap:28px}
+    .pnv{font-family:'Space Mono',monospace;font-size:32px;font-weight:700;color:var(--red);line-height:1}
+    .pnl{font-size:10px;font-weight:700;letter-spacing:1.5px;color:var(--muted);margin-top:4px}
+    .po-card{background:var(--dark);border-radius:24px;padding:36px;box-shadow:0 30px 80px rgba(0,0,0,0.18)}
+    .pc-t{font-size:9px;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,0.18);margin-bottom:24px;text-transform:uppercase}
+    .pr{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.04)}
+    .pr:last-child{border-bottom:none}
+    .pp{width:40px;height:24px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800}
+    .pl{flex:1;font-size:13px;color:rgba(255,255,255,0.38)}
+    .ppc{font-size:13px;font-weight:700;color:rgba(255,255,255,0.52);width:44px;text-align:right}
+    .pb{flex:0 0 80px;height:4px;background:rgba(255,255,255,0.06);border-radius:2px;overflow:hidden}
+    .pbf{height:100%;border-radius:2px}
+
+    .perf-sec{background:var(--black)}
+    .perf-ph{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:60px}
+    .ppf{border-radius:28px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,0.6),0 0 0 1px rgba(255,255,255,0.06);transition:transform 0.3s}
+    .ppf:hover{transform:translateY(-10px)}
+    .ppf img{width:100%;display:block}
+    .ppl{font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,0.22);text-transform:uppercase;text-align:center;margin-top:18px}
+
+    .wl-sec{background:var(--red);padding:120px 48px;text-align:center}
+    .wl-sec .ey{color:rgba(255,255,255,0.45);justify-content:center}
+    .wl-sec .ey::after{background:rgba(255,255,255,0.2)}
+    .wl-sec h2{color:#fff;margin-bottom:16px}
+    .wl-sec .lead{color:rgba(255,255,255,0.55);margin:0 auto 52px}
+    .wf{display:flex;gap:10px;justify-content:center;max-width:480px;margin:0 auto 14px;flex-wrap:wrap}
+    .wi{flex:1;min-width:220px;background:rgba(0,0,0,0.18);border:1px solid rgba(255,255,255,0.2);border-radius:12px;padding:16px 20px;font-size:15px;color:#fff;font-family:'Inter',sans-serif;outline:none;transition:all 0.2s}
+    .wi::placeholder{color:rgba(255,255,255,0.38)}
+    .wi:focus{border-color:rgba(255,255,255,0.45);background:rgba(0,0,0,0.25)}
+    .wb{background:#fff;color:var(--red);font-size:12px;font-weight:800;letter-spacing:2px;padding:16px 28px;border-radius:12px;border:none;cursor:pointer;transition:all 0.2s;white-space:nowrap}
+    .wb:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,0.18)}
+    .wn{font-size:12px;color:rgba(255,255,255,0.38)}
+    .plts{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:44px;flex-wrap:wrap}
+    .plt{display:flex;align-items:center;gap:8px;background:rgba(0,0,0,0.14);border:1px solid rgba(255,255,255,0.12);border-radius:10px;padding:10px 18px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.6)}
+
+    footer{background:var(--black);padding:64px 48px 40px;border-top:1px solid rgba(255,255,255,0.05)}
+    .fi{max-width:1160px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:32px}
+    .fl{display:flex;align-items:center;gap:12px}
+    .fd{width:44px;height:44px;border-radius:12px;overflow:hidden;background:var(--cream)}
+    .fd img{width:100%;height:100%;object-fit:cover;object-position:center 45%}
+    .fw{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#fff;letter-spacing:2px}
+    .fw em{color:var(--red);font-style:normal}
+    .flk{display:flex;gap:28px;flex-wrap:wrap;justify-content:center}
+    .flk a{font-size:13px;color:rgba(255,255,255,0.22);text-decoration:none;transition:color 0.2s}
+    .flk a:hover{color:rgba(255,255,255,0.6)}
+    .fb{font-size:11px;color:rgba(255,255,255,0.14);text-align:center;line-height:1.8;border-top:1px solid rgba(255,255,255,0.05);padding-top:28px;width:100%}
+
+    [data-f]{opacity:0;transform:translateY(30px);transition:opacity 0.7s ease,transform 0.7s ease}
+    [data-f].in{opacity:1;transform:none}
+    [data-f="1"]{transition-delay:0.1s}[data-f="2"]{transition-delay:0.2s}[data-f="3"]{transition-delay:0.3s}[data-f="4"]{transition-delay:0.4s}
+
+    @media(max-width:1024px){
+      nav{padding:0 24px}.sec{padding:80px 24px}.steps{grid-template-columns:repeat(2,1fr)}
+      .flt-row{grid-template-columns:repeat(3,1fr)}.po-sec{padding:80px 24px}.po-in{grid-template-columns:1fr;gap:48px}.mg{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .hero-phones{display:none}.nav-badge{display:none}.steps{grid-template-columns:1fr}
+      .flt-row{grid-template-columns:repeat(2,1fr)}.perf-ph{grid-template-columns:1fr}
+      .stats{grid-template-columns:repeat(2,1fr)}
+      .stat:nth-child(2){border-right:none}.stat:nth-child(3),.stat:nth-child(4){border-top:1px solid rgba(255,255,255,0.05)}
+      .stat:nth-child(4){border-right:none}
+      footer{padding:48px 24px 32px}
+    }
+  </style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-dog"><img src="images/IMG_2290.png" alt="Sunday"/></div>
+    <span class="nav-wordmark">SUN<em>DAY</em></span>
+  </a>
+  <div class="nav-right">
+    <span class="nav-badge">COMING SOON</span>
+    <a href="#waitlist" class="nav-btn">JOIN WAITLIST</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-tag"><div class="hero-tag-dot"></div>POWERED BY TOPTRACER · GHIN VERIFIED</div>
+  <h1>We Changed<em>Your Range.</em></h1>
+  <p class="hero-sub-tag">SKILL-BASED GOLF COMPETITION</p>
+  <p class="hero-desc">Enter real-money tournaments at the driving range. <strong>Compete in your verified flight. Win real cash.</strong> Payouts every Sunday night.</p>
+  <div class="hero-ctas">
+    <a href="#waitlist" class="btn-r">JOIN THE WAITLIST</a>
+    <a href="#how" class="btn-o">SEE HOW IT WORKS</a>
+  </div>
+  <div class="hero-phones">
+    <div class="ph ph-s ph-l"><img src="images/IMG_2299.png" alt="Home"/></div>
+    <div class="ph ph-c"><img src="images/IMG_2297.png" alt="Payout"/></div>
+    <div class="ph ph-s ph-r"><img src="images/IMG_2310.png" alt="Session"/></div>
+  </div>
+</section>
+
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ti">REAL MONEY <span>·</span> DRIVING RANGE <span>·</span></span>
+    <span class="ti">GHIN VERIFIED <span>·</span> TOPTRACER POWERED <span>·</span></span>
+    <span class="ti">TOP 15 GET PAID <span>·</span> EVERY SUNDAY NIGHT <span>·</span></span>
+    <span class="ti">CLOSEST TO PIN <span>·</span> LONG DRIVE <span>·</span> COURSE ROUND <span>·</span></span>
+    <span class="ti">REAL MONEY <span>·</span> DRIVING RANGE <span>·</span></span>
+    <span class="ti">GHIN VERIFIED <span>·</span> TOPTRACER POWERED <span>·</span></span>
+    <span class="ti">TOP 15 GET PAID <span>·</span> EVERY SUNDAY NIGHT <span>·</span></span>
+    <span class="ti">CLOSEST TO PIN <span>·</span> LONG DRIVE <span>·</span> COURSE ROUND <span>·</span></span>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat" data-f><div class="sn">37M</div><div class="sl">US Golfers</div></div>
+  <div class="stat" data-f="1"><div class="sn">700+</div><div class="sl">Toptracer Ranges</div></div>
+  <div class="stat" data-f="2"><div class="sn">$26B</div><div class="sl">Golf Market</div></div>
+  <div class="stat" data-f="3"><div class="sn">15%</div><div class="sl">Platform Rake</div></div>
+</div>
+
+<section class="sec" id="how">
+  <div class="con">
+    <div data-f><div class="ey">HOW IT WORKS</div><h2>Four steps.<br/>That's it.</h2><p class="lead">Sunday plugs directly into Toptracer. No camera, no manual entry. Just hit balls and watch your rank update live.</p></div>
+    <div style="margin-top:60px" class="steps">
+      <div class="step" data-f>
+        <div class="step-top">
+          <div class="snum">STEP 01</div>
+          <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2" stroke-linecap="round"><path d="M5 12.55a11 11 0 0114.08 0"/><path d="M1.42 9a16 16 0 0121.16 0"/><path d="M8.53 16.11a6 6 0 016.95 0"/><circle cx="12" cy="20" r="1" fill="#B91C1C"/></svg></div>
+          <h3>Connect Your Bay</h3>
+          <p>Open Sunday, tap Enter. Your Toptracer bay is found automatically. No scanning, no codes.</p>
+        </div>
+        <div class="step-img"><img src="images/IMG_2309.png" alt="Bay Found"/></div>
+      </div>
+      <div class="step" data-f="1">
+        <div class="step-top">
+          <div class="snum">STEP 02</div>
+          <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3>Enter a Tournament</h3>
+          <p>Choose your game and flight. Entry from $3. Your GHIN handicap places you in the right competition.</p>
+        </div>
+        <div class="step-img"><img src="images/IMG_2307.png" alt="Tournament"/></div>
+      </div>
+      <div class="step" data-f="2">
+        <div class="step-top">
+          <div class="snum">STEP 03</div>
+          <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2" stroke-linecap="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+          <h3>Hit Your Shots</h3>
+          <p>Every shot streams live from Toptracer. Your best shot counts. Watch your rank change in real time.</p>
+        </div>
+        <div class="step-img"><img src="images/IMG_2310.png" alt="Session"/></div>
+      </div>
+      <div class="step" data-f="3">
+        <div class="step-top">
+          <div class="snum">STEP 04</div>
+          <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2" stroke-linecap="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M16 12h.01" stroke-width="3"/></svg></div>
+          <h3>Get Paid Sunday Night</h3>
+          <p>Top 15 in your flight get paid. Cash hits your Sunday Wallet at 11:59 PM PT every week.</p>
+        </div>
+        <div class="step-img"><img src="images/IMG_2297.png" alt="Payout"/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="screens-sec">
+  <div class="scr-hd" data-f><div class="ey" style="justify-content:center">THE APP</div><h2>Built. Designed.<br/>Ready to integrate.</h2></div>
+  <div class="scr-track" id="st">
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2292.png" alt="Welcome"/></div><div class="scr-n">Welcome</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2293.png" alt="Compete"/></div><div class="scr-n">Compete</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2297.png" alt="Payout"/></div><div class="scr-n">Payout</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2299.png" alt="Home"/></div><div class="scr-n">Home</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2300.png" alt="Play"/></div><div class="scr-n">Play</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2307.png" alt="Tournament"/></div><div class="scr-n">Tournament</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2308.png" alt="Connect"/></div><div class="scr-n">Connect</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2309.png" alt="Bay Found"/></div><div class="scr-n">Bay Found</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2310.png" alt="Session"/></div><div class="scr-n">Live Session</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2304.png" alt="Profile"/></div><div class="scr-n">Profile</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2305.png" alt="Rankings"/></div><div class="scr-n">Rankings</div></div>
+    <div class="scr"><div class="scr-fr"><img src="images/IMG_2306.png" alt="Wallet"/></div><div class="scr-n">Wallet</div></div>
+  </div>
+</div>
+
+<section class="sec modes-sec">
+  <div class="con">
+    <div data-f><div class="ey">GAME MODES</div><h2>Choose your game.</h2><p class="lead-d">Four ways to compete. All powered by Toptracer. All paid out every Sunday night.</p></div>
+    <div class="mg">
+      <div class="mode" data-f><div class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div><h3>Closest to Pin</h3><p>One target. 5-minute window. Hit as many balls as you want — your best shot counts at 150 yards.</p><div class="tags"><span class="tag">$3–$10</span><span class="tag">5 MIN</span><span class="tag">GHIN FLIGHTS</span></div></div></div>
+      <div class="mode" data-f="1"><div class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg></div><div><h3>Long Drive</h3><p>Pure distance. Your best carry in a 5-minute window. Bomb it and let Toptracer do the measuring.</p><div class="tags"><span class="tag">$3–$10</span><span class="tag">5 MIN</span><span class="tag">ALL FLIGHTS</span></div></div></div>
+      <div class="mode" data-f="2"><div class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><path d="M3 17l4-8 4 4 4-6 4 10"/></svg></div><div><h3>Course Round</h3><p>Play 9 or 18 holes on Toptracer virtual courses. Compete on net score with full handicap adjustment.</p><div class="tags"><span class="tag">$5–$50</span><span class="tag">9 OR 18 HOLES</span><span class="tag">NET SCORE</span></div></div></div>
+      <div class="mode" data-f="3"><div class="mico"><svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg></div><div><h3>SUNDAY Game</h3><p>The full experience. 20 minutes, multiple game types. The biggest weekly prize pool on the platform.</p><div class="tags"><span class="tag">$5–$50</span><span class="tag">20 MIN</span><span class="tag">ALL FLIGHTS</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec flt-sec">
+  <div class="con">
+    <div class="flt-hd" data-f><div class="ey" style="justify-content:center;color:rgba(255,255,255,0.28)">COMPETITIVE FAIRNESS</div><h2>Fair at every level.</h2><p class="lead">Every player competes in their GHIN-verified flight. A scratch golfer never competes against a 20-handicapper. Ever.</p></div>
+    <div class="flt-row">
+      <div class="flt" style="background:rgba(185,28,28,0.12);border-color:rgba(185,28,28,0.25)" data-f><div class="fn">Pro Flight</div><div class="fr">+4 to 0</div><div class="fp" style="background:var(--red)">PRO</div></div>
+      <div class="flt" style="background:rgba(30,58,95,0.3);border-color:rgba(30,58,95,0.5)" data-f="1"><div class="fn">Elite Flight</div><div class="fr">1 to 12</div><div class="fp" style="background:#1E3A5F">ELITE</div></div>
+      <div class="flt" style="background:rgba(255,255,255,0.04)" data-f="2"><div class="fn">Mid Amateur</div><div class="fr">13 to 20</div><div class="fp" style="background:#1C1917">MID AM</div></div>
+      <div class="flt" style="background:rgba(92,61,46,0.2);border-color:rgba(92,61,46,0.4)" data-f="3"><div class="fn">Amateur</div><div class="fr">21 to 28</div><div class="fp" style="background:#5C3D2E">AMATEUR</div></div>
+      <div class="flt" style="background:rgba(59,74,47,0.2);border-color:rgba(59,74,47,0.4)" data-f="4"><div class="fn">Recreational</div><div class="fr">29+</div><div class="fp" style="background:#3B4A2F">REC</div></div>
+    </div>
+    <div class="gv" data-f><div class="gvd"></div><span class="gvt">OFFICIALLY VERIFIED BY USGA GHIN — HANDICAP INDEX REQUIRED AT ENTRY</span></div>
+  </div>
+</section>
+
+<section class="po-sec">
+  <div class="po-in">
+    <div class="po-l" data-f>
+      <div class="ey" style="color:var(--red)">SUNDAY PAYOUT STRUCTURE</div>
+      <h2>Top 15<span>Get Paid.</span></h2>
+      <p>First place takes 30% of the prize pool. 15 spots pay out every Sunday night at 11:59 PM PT. No subscription. No ads. Pure competition.</p>
+      <div class="po-nums">
+        <div><div class="pnv">15%</div><div class="pnl">PLATFORM RAKE</div></div>
+        <div><div class="pnv" style="color:var(--text)">85%</div><div class="pnl">TO PLAYERS</div></div>
+        <div><div class="pnv" style="color:var(--text)">3×</div><div class="pnl">MAX ENTRIES</div></div>
+      </div>
+    </div>
+    <div class="po-card" data-f="2">
+      <div class="pc-t">PAYOUT STRUCTURE — PER FLIGHT</div>
+      <div class="pr"><div class="pp" style="background:var(--red);color:#fff">1st</div><div class="pl">1st Place</div><div class="ppc">30%</div><div class="pb"><div class="pbf" style="width:100%;background:var(--red)"></div></div></div>
+      <div class="pr"><div class="pp" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4)">2nd</div><div class="pl">2nd Place</div><div class="ppc">18%</div><div class="pb"><div class="pbf" style="width:60%;background:rgba(255,255,255,0.18)"></div></div></div>
+      <div class="pr"><div class="pp" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4)">3rd</div><div class="pl">3rd Place</div><div class="ppc">12%</div><div class="pb"><div class="pbf" style="width:40%;background:rgba(255,255,255,0.14)"></div></div></div>
+      <div class="pr"><div class="pp" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4)">4th</div><div class="pl">4th Place</div><div class="ppc">8%</div><div class="pb"><div class="pbf" style="width:27%;background:rgba(255,255,255,0.11)"></div></div></div>
+      <div class="pr"><div class="pp" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4)">5th</div><div class="pl">5th Place</div><div class="ppc">6%</div><div class="pb"><div class="pbf" style="width:20%;background:rgba(255,255,255,0.09)"></div></div></div>
+      <div class="pr"><div class="pp" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);font-size:9px">6–10</div><div class="pl">6th–10th</div><div class="ppc">3% ea</div><div class="pb"><div class="pbf" style="width:10%;background:rgba(255,255,255,0.07)"></div></div></div>
+      <div class="pr"><div class="pp" style="background:rgba(255,255,255,0.07);color:rgba(255,255,255,0.4);font-size:9px">11–15</div><div class="pl">11th–15th</div><div class="ppc">1% ea</div><div class="pb"><div class="pbf" style="width:4%;background:rgba(255,255,255,0.06)"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec perf-sec">
+  <div class="con">
+    <div data-f><div class="ey">PERFORMANCE ANALYTICS</div><h2>Know your game<br/>like never before.</h2><p class="lead">Every session feeds your Sunday dashboard. Shot dispersion, club distances, consistency scores — all from real Toptracer data.</p></div>
+    <div class="perf-ph">
+      <div data-f><div class="ppf"><img src="images/IMG_2301.png" alt="Overview"/></div><div class="ppl">Overview & Trends</div></div>
+      <div data-f="2"><div class="ppf"><img src="images/IMG_2302.png" alt="Accuracy"/></div><div class="ppl">Shot Dispersion Map</div></div>
+      <div data-f="3"><div class="ppf"><img src="images/IMG_2303.png" alt="Distance"/></div><div class="ppl">Distance by Club</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="wl-sec" id="waitlist">
+  <div class="con">
+    <div class="ey">EARLY ACCESS</div>
+    <h2>Be first on<br/>the leaderboard.</h2>
+    <p class="lead">Sunday launches soon at Topgolf and Toptracer ranges. Get early access the moment we go live near you.</p>
+    <form class="wf" onsubmit="join(event)">
+      <input type="email" class="wi" id="em" placeholder="your@email.com" required/>
+      <button type="submit" class="wb">JOIN WAITLIST</button>
+    </form>
+    <p class="wn" id="wm">No spam. Just a heads up when Sunday goes live near you.</p>
+    <div class="plts">
+      <div class="plt"><svg width="13" height="13" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>iOS — Coming Soon</div>
+      <div class="plt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>Topgolf Seattle — First Market</div>
+      <div class="plt"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>GHIN Verified Flights</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fi">
+    <div class="fl">
+      <div class="fd"><img src="images/IMG_2290.png" alt="Sunday"/></div>
+      <span class="fw">SUN<em>DAY</em></span>
+    </div>
+    <div class="flk">
+      <a href="mailto:alvin@playsunday.golf">alvin@playsunday.golf</a>
+      <a href="#how">How It Works</a>
+      <a href="#waitlist">Join Waitlist</a>
+      <a href="mailto:alvin@playsunday.golf">Contact</a>
+    </div>
+    <div class="fb">Sunday is a skill-based competition platform. Not gambling. Legal in skill-based contest states.<br/>© 2026 Sunday Golf LLC &nbsp;·&nbsp; playsunday.golf &nbsp;·&nbsp; Mukilteo, WA</div>
+  </div>
+</footer>
+
+<script>
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('in')})},{threshold:0.1});
+document.querySelectorAll('[data-f]').forEach(el=>obs.observe(el));
+
+const st=document.getElementById('st');
+let d=false,sx,sl;
+st.addEventListener('mousedown',e=>{d=true;st.style.cursor='grabbing';sx=e.pageX-st.offsetLeft;sl=st.scrollLeft});
+st.addEventListener('mouseleave',()=>{d=false;st.style.cursor='grab'});
+st.addEventListener('mouseup',()=>{d=false;st.style.cursor='grab'});
+st.addEventListener('mousemove',e=>{if(!d)return;e.preventDefault();st.scrollLeft=sl-(e.pageX-st.offsetLeft-sx)*1.5});
+
+function join(e){
+  e.preventDefault();
+  const em=document.getElementById('em').value;
+  const btn=e.target.querySelector('button');
+  btn.textContent="YOU'RE IN ✓";btn.style.background='#15803D';btn.style.color='white';
+  document.getElementById('wm').textContent=em+' is on the list.';
+  document.getElementById('wm').style.color='rgba(255,255,255,0.75)';
+  document.getElementById('em').value='';
+}
+
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').style.background=window.scrollY>60?'rgba(8,8,8,0.97)':'rgba(8,8,8,0.9)';
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+</script>
+</body>
+</html>
