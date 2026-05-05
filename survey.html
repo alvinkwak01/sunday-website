@@ -11,7 +11,7 @@
     html,body{height:100%;-webkit-font-smoothing:antialiased}
     body{font-family:'Inter',sans-serif;background:#080808;color:#ffffff;overflow:hidden}
 
-    #progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.07);z-index:200}
+    #progress-bar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,0.1);z-index:200}
     #progress-fill{height:100%;background:#B91C1C;width:0%;transition:width 0.4s ease}
 
     #nav{
@@ -19,11 +19,11 @@
       display:flex;align-items:center;justify-content:space-between;
       padding:0 40px;height:64px;
       background:rgba(8,8,8,0.96);
-      border-bottom:1px solid rgba(255,255,255,0.05);
+      border-bottom:1px solid rgba(255,255,255,0.07);
     }
     .nav-logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:2px}
     .nav-logo em{color:#B91C1C;font-style:normal}
-    #nav-label{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.28);letter-spacing:1px}
+    #nav-label{font-family:'Space Mono',monospace;font-size:11px;color:rgba(255,255,255,0.45);letter-spacing:1px}
 
     #wrap{position:fixed;top:64px;left:0;right:0;bottom:0;overflow:hidden}
 
@@ -40,7 +40,6 @@
 
     .inner{width:100%;max-width:600px;margin:0 auto}
 
-    /* Eyebrow */
     .ey{
       display:inline-flex;align-items:center;gap:8px;
       background:rgba(185,28,28,0.1);border:1px solid rgba(185,28,28,0.22);
@@ -53,68 +52,47 @@
 
     .qn{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:3px;color:#B91C1C;margin-bottom:14px}
     .qt{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,40px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:10px}
-    .qs{font-size:15px;color:rgba(255,255,255,0.38);line-height:1.65;margin-bottom:28px}
+    .qs{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.65;margin-bottom:28px}
 
     .opts{display:flex;flex-direction:column;gap:10px}
     .opt{
       display:flex;align-items:center;gap:14px;
-      background:rgba(255,255,255,0.045);
-      border:1.5px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.05);
+      border:1.5px solid rgba(255,255,255,0.1);
       border-radius:13px;padding:15px 18px;
       cursor:pointer;transition:all 0.15s;
       text-align:left;width:100%;font-family:'Inter',sans-serif;
     }
-    .opt:hover{background:rgba(255,255,255,0.085);border-color:rgba(255,255,255,0.16);transform:translateY(-1px)}
+    .opt:hover{background:rgba(255,255,255,0.09);border-color:rgba(255,255,255,0.2);transform:translateY(-1px)}
     .opt.sel{background:rgba(185,28,28,0.13);border-color:rgba(185,28,28,0.45)}
     .ok{
       width:30px;height:30px;border-radius:8px;flex-shrink:0;
-      background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.1);
+      background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
       display:flex;align-items:center;justify-content:center;
       font-family:'Space Mono',monospace;font-size:11px;font-weight:700;
-      color:rgba(255,255,255,0.38);transition:all 0.15s;
+      color:rgba(255,255,255,0.55);transition:all 0.15s;
     }
     .opt.sel .ok{background:#B91C1C;border-color:#B91C1C;color:#fff}
-    .ot{font-size:15px;font-weight:500;color:rgba(255,255,255,0.78);line-height:1.4;flex:1}
+    .ot{font-size:15px;font-weight:500;color:rgba(255,255,255,0.85);line-height:1.4;flex:1}
     .oi{font-size:18px;margin-left:auto;flex-shrink:0}
 
     .hg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
     .hc{
-      background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
+      background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.1);
       border-radius:12px;padding:13px 8px;text-align:center;cursor:pointer;transition:all 0.15s;
     }
-    .hc:hover{background:rgba(255,255,255,0.085);transform:translateY(-2px)}
+    .hc:hover{background:rgba(255,255,255,0.09);transform:translateY(-2px)}
     .hc.sel{background:rgba(185,28,28,0.13);border-color:rgba(185,28,28,0.45)}
     .hr{display:block;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:#fff;margin-bottom:3px}
-    .hl{display:block;font-size:10px;font-weight:600;color:rgba(255,255,255,0.32);letter-spacing:0.3px}
+    .hl{display:block;font-size:10px;font-weight:600;color:rgba(255,255,255,0.45);letter-spacing:0.3px}
 
     textarea.ta{
-      width:100%;background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
+      width:100%;background:rgba(255,255,255,0.05);border:1.5px solid rgba(255,255,255,0.1);
       border-radius:13px;padding:16px 18px;font-size:15px;color:#fff;
       font-family:'Inter',sans-serif;outline:none;resize:none;transition:border-color 0.2s;line-height:1.6;
     }
-    textarea.ta::placeholder{color:rgba(255,255,255,0.18)}
+    textarea.ta::placeholder{color:rgba(255,255,255,0.3)}
     textarea.ta:focus{border-color:rgba(185,28,28,0.4)}
-
-    .irow{display:flex;gap:12px;margin-bottom:13px}
-    .iw{flex:1}
-    .il{display:block;font-size:10px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.28);margin-bottom:7px;text-transform:uppercase}
-    .inp{
-      width:100%;background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
-      border-radius:12px;padding:13px 16px;font-size:15px;color:#fff;
-      font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s;
-    }
-    .inp::placeholder{color:rgba(255,255,255,0.18)}
-    .inp:focus{border-color:rgba(185,28,28,0.4)}
-
-    .grow{display:flex;gap:10px;margin-top:0}
-    .gb{
-      flex:1;background:rgba(255,255,255,0.045);border:1.5px solid rgba(255,255,255,0.08);
-      border-radius:12px;padding:12px 8px;font-size:13px;font-weight:600;
-      color:rgba(255,255,255,0.48);cursor:pointer;text-align:center;transition:all 0.15s;
-      font-family:'Inter',sans-serif;
-    }
-    .gb:hover{background:rgba(255,255,255,0.085)}
-    .gb.sel{background:rgba(185,28,28,0.13);border-color:rgba(185,28,28,0.45);color:#fff}
 
     .bn{
       display:block;background:#B91C1C;color:#fff;
@@ -127,50 +105,59 @@
     .bn:disabled{opacity:0.22;cursor:not-allowed;transform:none;box-shadow:none}
     .bs{
       display:block;background:none;border:none;cursor:pointer;
-      font-size:12px;color:rgba(255,255,255,0.2);font-weight:600;
+      font-size:12px;color:rgba(255,255,255,0.35);font-weight:600;
       letter-spacing:1px;margin-top:11px;transition:color 0.2s;font-family:'Inter',sans-serif;
     }
-    .bs:hover{color:rgba(255,255,255,0.48)}
+    .bs:hover{color:rgba(255,255,255,0.6)}
 
     /* Intro */
     .it{font-family:'Playfair Display',serif;font-size:clamp(46px,8vw,82px);font-weight:900;color:#fff;line-height:0.93;letter-spacing:-3px;margin-bottom:12px}
     .it em{font-style:italic;color:#B91C1C;display:block}
-    .is{font-size:17px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:440px;margin-bottom:36px}
-    .is strong{color:rgba(255,255,255,0.7);font-weight:600}
-    .im{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.22);font-weight:600;margin-top:20px}
-    .ms{color:rgba(255,255,255,0.1)}
+    .is{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;max-width:440px;margin-bottom:36px}
+    .is strong{color:rgba(255,255,255,0.85);font-weight:600}
+    .im{display:flex;align-items:center;gap:6px;font-size:12px;color:rgba(255,255,255,0.35);font-weight:600;margin-top:20px}
+    .ms{color:rgba(255,255,255,0.15)}
 
     /* Thanks */
-    .thi{width:68px;height:68px;border-radius:18px;background:rgba(185,28,28,0.1);border:1px solid rgba(185,28,28,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:26px}
+    .thi{width:68px;height:68px;border-radius:18px;background:rgba(185,28,28,0.1);border:1px solid rgba(185,28,28,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 26px}
     .tht{font-family:'Playfair Display',serif;font-size:clamp(30px,5vw,50px);font-weight:900;color:#fff;line-height:1.05;letter-spacing:-1.5px;margin-bottom:12px}
     .tht em{font-style:italic;color:#B91C1C}
-    .ths{font-size:15px;color:rgba(255,255,255,0.38);line-height:1.7;max-width:400px;margin-bottom:28px}
-    .thb{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 20px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.38)}
+    .ths{font-size:15px;color:rgba(255,255,255,0.55);line-height:1.7;max-width:400px;margin:0 auto 28px}
+    .thb{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:12px 20px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.55)}
     .gd{width:7px;height:7px;border-radius:50%;background:#4ADE80}
 
-    #kh{position:fixed;bottom:26px;right:28px;display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.16);font-weight:600;pointer-events:none}
-    .kk{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:6px;padding:3px 8px;font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,0.28)}
+    /* Back button */
+    #back-btn{
+      position:fixed;bottom:28px;left:28px;
+      background:none;border:none;cursor:pointer;
+      font-size:12px;font-weight:700;letter-spacing:1px;
+      color:rgba(255,255,255,0.35);
+      transition:color 0.2s;font-family:'Inter',sans-serif;
+      display:none;
+    }
+    #back-btn:hover{color:rgba(255,255,255,0.65)}
 
-    /* Netlify hidden form */
+    #kh{position:fixed;bottom:26px;right:28px;display:flex;align-items:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.22);font-weight:600;pointer-events:none}
+    .kk{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:3px 8px;font-family:'Space Mono',monospace;font-size:10px;color:rgba(255,255,255,0.35)}
+
     #netlify-form{display:none}
 
     @media(max-width:580px){
       #nav{padding:0 20px}
       .hg{grid-template-columns:repeat(2,1fr)}
-      .irow{flex-direction:column}
       #kh{display:none}
+      #back-btn{bottom:20px;left:20px}
     }
   </style>
 </head>
 <body>
 
-<!-- Hidden Netlify form for data capture -->
 <form id="netlify-form" name="sunday-survey" netlify netlify-honeypot="bot-field" hidden>
   <input name="bot-field"/>
   <input name="q1_frequency"/><input name="q2_session"/><input name="q3_improvement"/>
   <input name="q4_stakes"/><input name="q5_pay"/><input name="q6_toptracer_access"/>
-  <input name="q7_toptracer_used"/><input name="q8_open_text"/><input name="q9_handicap"/>
-  <input name="firstName"/><input name="email"/><input name="hometown"/><input name="ghin"/>
+  <input name="q7_toptracer_used"/><input name="q8_toptracer_stakes"/>
+  <input name="q9_open_text"/><input name="q10_handicap"/>
 </form>
 
 <div id="progress-bar"><div id="progress-fill"></div></div>
@@ -185,18 +172,18 @@
   <!-- 0: Intro -->
   <div class="slide active" id="s0">
     <div class="inner">
-      <div class="ey"><div class="blink"></div>2 MINUTES · 9 QUESTIONS</div>
+      <div class="ey"><div class="blink"></div>2 MINUTES · 10 QUESTIONS</div>
       <h1 class="it">Tell us about<em>your range.</em></h1>
       <p class="is">No right or wrong answers. Just <strong>honest thoughts</strong> from a golfer who's been there.</p>
       <button class="bn" onclick="go(1)">LET'S GO →</button>
-      <div class="im">Anonymous <span class="ms">·</span> 9 questions <span class="ms">·</span> ~2 minutes</div>
+      <div class="im">Anonymous <span class="ms">·</span> 10 questions <span class="ms">·</span> ~2 minutes</div>
     </div>
   </div>
 
   <!-- 1: Frequency -->
   <div class="slide" id="s1">
     <div class="inner">
-      <div class="qn">01 / 09</div>
+      <div class="qn">01 / 10</div>
       <h2 class="qt">How often do you hit balls at the range?</h2>
       <p class="qs">Pick the one that fits your usual routine.</p>
       <div class="opts">
@@ -211,7 +198,7 @@
   <!-- 2: Session type -->
   <div class="slide" id="s2">
     <div class="inner">
-      <div class="qn">02 / 09</div>
+      <div class="qn">02 / 10</div>
       <h2 class="qt">How would you describe a typical range session?</h2>
       <p class="qs">Be honest. Nobody's watching.</p>
       <div class="opts">
@@ -226,7 +213,7 @@
   <!-- 3: Improvement -->
   <div class="slide" id="s3">
     <div class="inner">
-      <div class="qn">03 / 09</div>
+      <div class="qn">03 / 10</div>
       <h2 class="qt">Do your range sessions actually improve your game?</h2>
       <p class="qs">Real talk.</p>
       <div class="opts">
@@ -241,7 +228,7 @@
   <!-- 4: Stakes -->
   <div class="slide" id="s4">
     <div class="inner">
-      <div class="qn">04 / 09</div>
+      <div class="qn">04 / 10</div>
       <h2 class="qt">Have you ever wished there were actual stakes at the range?</h2>
       <p class="qs">Competition. Something on the line. A reason to care about each shot.</p>
       <div class="opts">
@@ -256,7 +243,7 @@
   <!-- 5: Pay -->
   <div class="slide" id="s5">
     <div class="inner">
-      <div class="qn">05 / 09</div>
+      <div class="qn">05 / 10</div>
       <h2 class="qt">Would you enter a buy-in tournament at the range for a chance to win cash?</h2>
       <p class="qs">Matched against your exact skill level. Top finishers win cash.</p>
       <div class="opts">
@@ -271,7 +258,7 @@
   <!-- 6: Toptracer access -->
   <div class="slide" id="s6">
     <div class="inner">
-      <div class="qn">06 / 09</div>
+      <div class="qn">06 / 10</div>
       <h2 class="qt">Do you have access to a Toptracer range near you?</h2>
       <p class="qs">Toptracer is ball-tracking technology available at Topgolf and hundreds of other ranges.</p>
       <div class="opts">
@@ -286,7 +273,7 @@
   <!-- 7: Toptracer used -->
   <div class="slide" id="s7">
     <div class="inner">
-      <div class="qn">07 / 09</div>
+      <div class="qn">07 / 10</div>
       <h2 class="qt">Have you actually used Toptracer Range?</h2>
       <p class="qs">The ball-tracking games and shot data on the bay screens.</p>
       <div class="opts">
@@ -298,22 +285,37 @@
     </div>
   </div>
 
-  <!-- 8: Open text -->
+  <!-- 8: Toptracer + stakes -->
   <div class="slide" id="s8">
     <div class="inner">
-      <div class="qn">08 / 09</div>
-      <h2 class="qt">What would make you visit the range more often?</h2>
-      <p class="qs">Open answer — whatever comes to mind.</p>
-      <textarea class="ta" id="q8text" rows="4" placeholder="e.g. competition, better feedback, something to track progress..."></textarea>
-      <button class="bn" onclick="go(9)">NEXT →</button>
-      <button class="bs" onclick="go(9)">Skip this one</button>
+      <div class="qn">08 / 10</div>
+      <h2 class="qt">Would you use Toptracer more if real money was on the line?</h2>
+      <p class="qs">Think about your last session at the range. Would stakes change how often you showed up?</p>
+      <div class="opts">
+        <button class="opt" onclick="pick('q8_toptracer_stakes',this,'definitely',true)"><div class="ok">A</div><div class="ot">Yes — that's exactly what's missing</div><div class="oi">🔥</div></button>
+        <button class="opt" onclick="pick('q8_toptracer_stakes',this,'probably',true)"><div class="ok">B</div><div class="ot">Probably — depends on the format</div></button>
+        <button class="opt" onclick="pick('q8_toptracer_stakes',this,'maybe',true)"><div class="ok">C</div><div class="ot">Maybe — I'd want to try it first</div></button>
+        <button class="opt" onclick="pick('q8_toptracer_stakes',this,'no',true)"><div class="ok">D</div><div class="ot">No — I use it for fun, not competition</div></button>
+      </div>
     </div>
   </div>
 
-  <!-- 9: Handicap -->
+  <!-- 9: Open text -->
   <div class="slide" id="s9">
     <div class="inner">
-      <div class="qn">09 / 09</div>
+      <div class="qn">09 / 10</div>
+      <h2 class="qt">What would make you visit the range more often?</h2>
+      <p class="qs">Open answer — whatever comes to mind.</p>
+      <textarea class="ta" id="q9text" rows="4" placeholder="e.g. competition, better feedback, something to track progress..."></textarea>
+      <button class="bn" onclick="go(10)">NEXT →</button>
+      <button class="bs" onclick="go(10)">Skip this one</button>
+    </div>
+  </div>
+
+  <!-- 10: Handicap -->
+  <div class="slide" id="s10">
+    <div class="inner">
+      <div class="qn">10 / 10</div>
       <h2 class="qt">What's your handicap?</h2>
       <p class="qs">Be honest — this is just for data. No judgment here.</p>
       <div class="hg">
@@ -326,43 +328,48 @@
         <div class="hc" onclick="pickH(this,'30+')"><span class="hr">30+</span><span class="hl">Recreational</span></div>
         <div class="hc" onclick="pickH(this,'none')"><span class="hr">—</span><span class="hl">No Handicap</span></div>
       </div>
-      <button class="bn" id="btn9" onclick="finish()" disabled>SUBMIT →</button>
+      <button class="bn" id="btn10" onclick="finish()" disabled>SUBMIT →</button>
     </div>
   </div>
 
   <!-- 11: Thanks -->
   <div class="slide" id="s11">
-    <div class="inner" style="text-align:center">
-      <div class="thi" style="margin:0 auto 26px">
+    <div class="inner" style="text-align:center;padding:20px 0">
+      <div class="thi">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
       <h2 class="tht">Thank you.<em>Really.</em></h2>
-<p class="ths">Your feedback helps us build something golfers actually deserve.</p>
+      <p class="ths">Your feedback helps us build something golfers actually deserve.</p>
       <div class="thb"><div class="gd"></div>Response recorded · playsunday.golf</div>
-      <a href="/" style="display:inline-block;margin-top:24px;font-size:12px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">← Back to playsunday.golf</a>
-      <p style="margin-top:20px;font-size:11px;color:rgba(255,255,255,0.15);letter-spacing:1px">TAP ANYWHERE TO GO BACK</p>
+      <div style="margin-top:28px">
+        <a href="/" style="display:block;font-size:13px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.45);text-decoration:none;margin-bottom:10px;transition:color 0.2s" onmouseover="this.style.color='rgba(255,255,255,0.8)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">← Back to playsunday.golf</a>
+        <p style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;margin-top:6px">TAP ANYWHERE TO GO HOME</p>
+      </div>
     </div>
   </div>
 
 </div>
 
+<button id="back-btn" onclick="goBack()">← BACK</button>
 <div id="kh"><span>Press</span><span class="kk">Enter</span><span>to continue</span></div>
 
 <script>
   const TOTAL = 12;
   let cur = 0;
   const ans = {};
-  let ghinVal = null;
+  const navHistory = [0];
 
   function updateUI() {
     document.getElementById('progress-fill').style.width = (cur/(TOTAL-1)*100)+'%';
     const lbl = document.getElementById('nav-label');
     if(cur===0) lbl.textContent='The Range Survey';
     else if(cur===11) lbl.textContent='Done ✓';
-    else lbl.textContent='Question '+cur+' of 9';
+    else lbl.textContent='Question '+cur+' of 10';
+    document.getElementById('back-btn').style.display = (cur > 0 && cur < 11) ? 'block' : 'none';
   }
 
   function go(n) {
+    navHistory.push(n);
     const from = document.getElementById('s'+cur);
     from.classList.add('out');
     setTimeout(()=>{
@@ -373,6 +380,21 @@
     },300);
   }
 
+  function goBack() {
+    if(navHistory.length > 1) {
+      navHistory.pop();
+      const prev = navHistory[navHistory.length-1];
+      const from = document.getElementById('s'+cur);
+      from.classList.add('out');
+      setTimeout(()=>{
+        from.classList.remove('active','out');
+        cur=prev;
+        document.getElementById('s'+cur).classList.add('active');
+        updateUI();
+      },300);
+    }
+  }
+
   function pick(key,el,val,auto) {
     el.closest('.opts').querySelectorAll('.opt').forEach(o=>o.classList.remove('sel'));
     el.classList.add('sel');
@@ -381,34 +403,28 @@
   }
 
   function pickH(el,val) {
-    document.querySelectorAll('#s9 .hc').forEach(c=>c.classList.remove('sel'));
+    document.querySelectorAll('#s10 .hc').forEach(c=>c.classList.remove('sel'));
     el.classList.add('sel');
-    ans.q9_handicap=val;
-    document.getElementById('btn9').disabled=false;
-  }
-
-  function pickG(btn,val) {
-    document.querySelectorAll('.gb').forEach(b=>b.classList.remove('sel'));
-    btn.classList.add('sel');
-    ghinVal=val;
+    ans.q10_handicap=val;
+    document.getElementById('btn10').disabled=false;
   }
 
   function finish() {
     const fd = new FormData();
     fd.append('form-name','sunday-survey');
     Object.keys(ans).forEach(k=>fd.append(k,ans[k]||''));
-    fd.append('q8_open_text',document.getElementById('q8text').value||'');
+    fd.append('q9_open_text',document.getElementById('q9text').value||'');
     fetch('/',{method:'POST',body:fd}).catch(()=>{});
     go(11);
     setTimeout(()=>{
-  document.getElementById('s11').addEventListener('click', ()=>{ window.location.href='/'; });
-}, 500);
+      document.getElementById('s11').addEventListener('click', ()=>{ window.location.href='/'; });
+    }, 500);
   }
 
   document.addEventListener('keydown',e=>{
     if(e.key==='Enter'){
       if(cur===0) go(1);
-      if(cur===8) go(9);
+      if(cur===9) go(10);
     }
   });
 
