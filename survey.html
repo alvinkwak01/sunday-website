@@ -333,12 +333,14 @@
   <!-- 11: Thanks -->
   <div class="slide" id="s11">
     <div class="inner" style="text-align:center">
-      <div class="thi">
+      <div class="thi" style="margin:0 auto 26px">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B91C1C" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h2 class="tht">You're on the<em>leaderboard.</em></h2>
-      <p class="ths">Your answers help us build the range experience golfers actually deserve. We'll reach out when Sunday comes to your range.</p>
+      <h2 class="tht">Thank you.<em>Really.</em></h2>
+<p class="ths">Your feedback helps us build something golfers actually deserve.</p>
       <div class="thb"><div class="gd"></div>Response recorded · playsunday.golf</div>
+      <a href="/" style="display:inline-block;margin-top:24px;font-size:12px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.25);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color='rgba(255,255,255,0.6)'" onmouseout="this.style.color='rgba(255,255,255,0.25)'">← Back to playsunday.golf</a>
+      <p style="margin-top:20px;font-size:11px;color:rgba(255,255,255,0.15);letter-spacing:1px">TAP ANYWHERE TO GO BACK</p>
     </div>
   </div>
 
@@ -398,6 +400,9 @@
     fd.append('q8_open_text',document.getElementById('q8text').value||'');
     fetch('/',{method:'POST',body:fd}).catch(()=>{});
     go(11);
+    setTimeout(()=>{
+  document.getElementById('s11').addEventListener('click', ()=>{ window.location.href='/'; });
+}, 500);
   }
 
   document.addEventListener('keydown',e=>{
