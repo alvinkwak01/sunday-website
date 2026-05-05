@@ -326,34 +326,7 @@
         <div class="hc" onclick="pickH(this,'30+')"><span class="hr">30+</span><span class="hl">Recreational</span></div>
         <div class="hc" onclick="pickH(this,'none')"><span class="hr">—</span><span class="hl">No Handicap</span></div>
       </div>
-      <button class="bn" id="btn9" onclick="go(10)" disabled>ALMOST DONE →</button>
-    </div>
-  </div>
-
-  <!-- 10: Contact -->
-  <div class="slide" id="s10">
-    <div class="inner">
-      <div class="qn">LAST STEP</div>
-      <h2 class="qt">Want early access to <em style="font-style:italic;color:#B91C1C">Sunday?</em></h2>
-      <p class="qs">Leave your details and you'll be first when we launch at your range. Completely optional.</p>
-      <div class="irow">
-        <div class="iw"><label class="il">First Name</label><input type="text" class="inp" id="fn" placeholder="Alvin" autocomplete="given-name"/></div>
-        <div class="iw"><label class="il">Email</label><input type="email" class="inp" id="em" placeholder="you@email.com" autocomplete="email"/></div>
-      </div>
-      <div class="iw" style="margin-bottom:14px">
-        <label class="il">Hometown</label>
-        <input type="text" class="inp" id="ht" placeholder="Seattle, WA" style="width:100%" autocomplete="address-level2"/>
-      </div>
-      <div class="iw">
-        <label class="il" style="margin-bottom:10px;display:block">Do you have a GHIN number?</label>
-        <div class="grow">
-          <button class="gb" onclick="pickG(this,'yes')">Yes I do ✓</button>
-          <button class="gb" onclick="pickG(this,'no')">Not yet</button>
-          <button class="gb" onclick="pickG(this,'what')">What's GHIN?</button>
-        </div>
-      </div>
-      <button class="bn" onclick="finish()">SUBMIT →</button>
-      <button class="bs" onclick="go(11)">Skip — just submit my answers</button>
+      <button class="bn" id="btn9" onclick="finish()" disabled>SUBMIT →</button>
     </div>
   </div>
 
@@ -419,21 +392,12 @@
   }
 
   function finish() {
-    ans.firstName=document.getElementById('fn').value;
-    ans.email=document.getElementById('em').value;
-    ans.hometown=document.getElementById('ht').value;
-    ans.ghin=ghinVal||'not answered';
-
-    // Submit to Netlify
-    const form = document.getElementById('netlify-form');
     const fd = new FormData();
     fd.append('form-name','sunday-survey');
     Object.keys(ans).forEach(k=>fd.append(k,ans[k]||''));
     fd.append('q8_open_text',document.getElementById('q8text').value||'');
-
-    fetch('/',{method:'POST',body:fd})
-      .catch(()=>{})
-      .finally(()=>go(11));
+    fetch('/',{method:'POST',body:fd}).catch(()=>{});
+    go(11);
   }
 
   document.addEventListener('keydown',e=>{
