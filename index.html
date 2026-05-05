@@ -395,7 +395,17 @@
     setTimeout(() => confetti({ particleCount: 60, spread: 100, origin: { x: 0.9, y: 0.5 }, colors }), 350);
     setTimeout(() => confetti({ particleCount: 40, spread: 60, origin: { y: 0.7 }, colors }), 500);
   }
-
+  
+  // Check if already signed up
+  if(localStorage.getItem('sunday-signed-up')) {
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('succ').style.display = 'block';
+    document.getElementById('funnyLine').textContent = 'Welcome back. You\'re already on the list.';
+    const refBox = document.getElementById('refBox');
+    refBox.style.display = 'block';
+    refBox.innerHTML = '<div class="rt">Already signed up</div><div class="rd">You\'re on the list. We\'ll be in touch when Sunday goes live near you. <a href="#" onclick="localStorage.removeItem(\'sunday-signed-up\');location.reload();" style="color:rgba(255,255,255,0.4);font-size:11px;display:block;margin-top:8px;text-decoration:none;">Sign up with a different email →</a></div>';
+  }
+  
   let gVal = null;
   function selG(btn, v) {
     document.querySelectorAll('.gb').forEach(b => b.classList.remove('sel'));
@@ -412,35 +422,49 @@
       return;
     }
 
-    // Submit to Netlify
+    // Disable button to prevent double clicks
+    const btn = document.querySelector('.sb');
+    btn.disabled = true;
+
+    // Show success + fireworks IMMEDIATELY
+    document.getElementById('formWrap').style.display = 'none';
+    document.getElementById('succ').style.display = 'block';
+    document.getElementById('refBox').style.display = 'block';
+    const line = funnyLines[Math.floor(Math.random() * funnyLines.length)];
+    document.getElementById('funnyLine').textContent = line;
+    fireConfetti();
+    localStorage.setItem('sunday-signed-up', '1');
+
+    // Do all backend stuff quietly in background
+    try {
+      const checkRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+        headers: { 'X-Master-Key': BIN_KEY }
+      });
+      const checkData = await checkRes.json();
+      const emails = checkData.record.emails || [];
+      if(!emails.includes(em.toLowerCase())) {
+        const newCount = (checkData.record.count || 0) + 1;
+        emails.push(em.toLowerCase());
+        await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+          method: 'PUT',
+          headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+          body: JSON.stringify({ count: newCount, emails })
+        });
+        const cnEl = document.getElementById('cnum');
+        cnEl.textContent = newCount + BASE_COUNT;
+        cnEl.classList.remove('bump');
+        void cnEl.offsetWidth;
+        cnEl.classList.add('bump');
+      }
+    } catch(e) {}
+
+    // Submit to Netlify in background
     const fd = new FormData();
     fd.append('form-name', 'sunday-waitlist');
     fd.append('firstName', fn); fd.append('email', em);
     fd.append('handicap', hcp); fd.append('hometown', ht);
     fd.append('ghin', gVal || 'not answered');
     fetch('/', { method: 'POST', body: fd }).catch(() => {});
-
-    // Increment live counter
-    const newCount = await incrementCount();
-    const cnEl = document.getElementById('cnum');
-    if(newCount) {
-      cnEl.textContent = newCount;
-      cnEl.classList.remove('bump');
-      void cnEl.offsetWidth;
-      cnEl.classList.add('bump');
-    }
-
-    // Hide form, show success
-    document.getElementById('formWrap').style.display = 'none';
-    document.getElementById('succ').style.display = 'block';
-    document.getElementById('refBox').style.display = 'block';
-
-    // Random funny line
-    const line = funnyLines[Math.floor(Math.random() * funnyLines.length)];
-    document.getElementById('funnyLine').textContent = line;
-
-    // Fireworks!
-    fireConfetti();
   }
 
   document.querySelectorAll('a[href^="#"]').forEach(a => {
