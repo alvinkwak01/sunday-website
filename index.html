@@ -18,13 +18,13 @@
       display:flex;align-items:center;justify-content:space-between;
       padding:0 48px;height:64px;
       background:rgba(8,8,8,0.93);backdrop-filter:blur(20px);
-      border-bottom:1px solid rgba(255,255,255,0.05);
+      border-bottom:1px solid rgba(255,255,255,0.07);
     }
     .logo{font-family:'Playfair Display',serif;font-size:18px;font-weight:900;color:#fff;letter-spacing:2px;text-decoration:none}
     .logo em{color:#B91C1C;font-style:normal}
     .nav-right{display:flex;align-items:center;gap:12px}
-    .nav-survey{font-size:11px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.4);text-decoration:none;transition:color 0.2s}
-    .nav-survey:hover{color:rgba(255,255,255,0.8)}
+    .nav-survey{font-size:11px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,0.5);text-decoration:none;transition:color 0.2s}
+    .nav-survey:hover{color:rgba(255,255,255,0.9)}
     .nav-btn{background:#B91C1C;color:#fff;font-size:11px;font-weight:800;letter-spacing:2px;padding:10px 22px;border-radius:10px;text-decoration:none;box-shadow:0 4px 20px rgba(185,28,28,0.35);transition:all 0.2s}
     .nav-btn:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(185,28,28,0.5)}
 
@@ -71,7 +71,7 @@
 
     .htag{
       font-size:clamp(12px,1.5vw,16px);font-weight:800;letter-spacing:3px;
-      color:rgba(255,255,255,0.55);margin-bottom:28px;
+      color:rgba(255,255,255,0.65);margin-bottom:28px;
       text-transform:uppercase;
     }
     .htag em{
@@ -86,7 +86,7 @@
       border:1px solid rgba(255,255,255,0.18);
       border-radius:30px;padding:8px 20px;
       font-size:10px;font-weight:800;letter-spacing:2.5px;
-      color:rgba(255,255,255,0.7);
+      color:rgba(255,255,255,0.8);
       margin-top:4px;
     }
     .coming-dot{width:6px;height:6px;border-radius:50%;background:#4ADE80;animation:bl 2s infinite}
@@ -101,14 +101,21 @@
     .plabel::after{content:'';flex:0 0 32px;height:1px;background:rgba(185,28,28,0.35)}
     .truth{display:flex;align-items:flex-start;gap:32px;padding:38px 0;border-bottom:1px solid rgba(0,0,0,0.07)}
     .truth:last-child{border-bottom:none}
-    .tn{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;color:#B91C1C;flex-shrink:0;margin-top:6px;width:22px}
+    .tn{
+      font-family:'Space Mono',monospace;
+      font-size:clamp(28px,4vw,48px);
+      font-weight:700;letter-spacing:-1px;
+      color:rgba(185,28,28,0.35);
+      flex-shrink:0;line-height:1;
+      margin-top:4px;min-width:60px;
+    }
     .tt{font-family:'Playfair Display',serif;font-size:clamp(22px,3vw,36px);font-weight:900;color:#111;line-height:1.1;letter-spacing:-1px;margin-bottom:10px}
-    .td{font-size:16px;color:#777;line-height:1.75;max-width:600px}
+    .td{font-size:16px;color:#555;line-height:1.75;max-width:600px}
 
     .shift{background:#080808;padding:80px 24px;text-align:center;border-top:1px solid rgba(255,255,255,0.04)}
     .sl{font-family:'Playfair Display',serif;font-size:clamp(32px,5vw,62px);font-weight:900;color:#fff;line-height:1.0;letter-spacing:-2px}
     .sl em{font-style:italic;color:#B91C1C}
-    .ss{font-size:15px;color:rgba(255,255,255,0.28);margin-top:18px;font-weight:500;letter-spacing:0.5px}
+    .ss{font-size:15px;color:rgba(255,255,255,0.45);margin-top:18px;font-weight:500;letter-spacing:0.5px}
 
     .ctr{
       background:rgba(255,255,255,0.02);
@@ -117,54 +124,57 @@
       padding:32px 24px;text-align:center;
     }
     .cn{font-family:'Space Mono',monospace;font-size:42px;font-weight:700;color:#B91C1C;line-height:1;margin-bottom:8px;transition:all 0.3s}
-    .cl{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.22);text-transform:uppercase}
+    .cl{font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,0.35);text-transform:uppercase}
 
     .wl{background:#080808;padding:80px 24px 120px}
     .wi{max-width:560px;margin:0 auto;text-align:center}
     .wt{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,44px);font-weight:900;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:12px}
-    .ws{font-size:15px;color:rgba(255,255,255,0.32);line-height:1.7;margin-bottom:36px}
+    .ws{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:36px}
 
     .card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;padding:32px;text-align:left}
     .fl{margin-bottom:18px}
-    .ll{display:block;font-size:10px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.28);margin-bottom:7px;text-transform:uppercase}
-    .fn{font-size:11px;color:rgba(255,255,255,0.18);font-style:italic;margin-left:8px;font-weight:400;letter-spacing:0;text-transform:none}
+    .ll{display:block;font-size:10px;font-weight:800;letter-spacing:2px;color:rgba(255,255,255,0.45);margin-bottom:7px;text-transform:uppercase}
+    .fn{font-size:11px;color:rgba(255,255,255,0.3);font-style:italic;margin-left:8px;font-weight:400;letter-spacing:0;text-transform:none}
     .ii{width:100%;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:14px 16px;font-size:15px;color:#fff;font-family:'Inter',sans-serif;outline:none;transition:border-color 0.2s}
-    .ii::placeholder{color:rgba(255,255,255,0.18)}
+    .ii::placeholder{color:rgba(255,255,255,0.25)}
     .ii:focus{border-color:rgba(185,28,28,0.4)}
     .fr{display:flex;gap:12px}
     .fr .fl{flex:1;margin-bottom:0}
     select.ii{-webkit-appearance:none;appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1L6 7L11 1' stroke='rgba(255,255,255,0.25)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;background-color:rgba(255,255,255,0.04)}
     select.ii option{background:#1a1a1a;color:#fff}
     .gr{display:flex;gap:10px}
-    .gb{flex:1;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 8px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.45);cursor:pointer;text-align:center;transition:all 0.15s;font-family:'Inter',sans-serif}
+    .gb{flex:1;background:rgba(255,255,255,0.04);border:1.5px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 8px;font-size:13px;font-weight:600;color:rgba(255,255,255,0.55);cursor:pointer;text-align:center;transition:all 0.15s;font-family:'Inter',sans-serif}
     .gb:hover{background:rgba(255,255,255,0.08)}
     .gb.sel{background:rgba(185,28,28,0.12);border-color:rgba(185,28,28,0.4);color:#fff}
     .div{height:1px;background:rgba(255,255,255,0.06);margin:22px 0}
     .sb{width:100%;background:#B91C1C;color:#fff;font-size:12px;font-weight:800;letter-spacing:2.5px;padding:17px;border-radius:12px;border:none;cursor:pointer;box-shadow:0 8px 28px rgba(185,28,28,0.38);transition:all 0.2s;margin-top:22px;font-family:'Inter',sans-serif}
     .sb:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(185,28,28,0.52)}
-    .fn2{font-size:12px;color:rgba(255,255,255,0.18);text-align:center;margin-top:14px;line-height:1.6}
+    .fn2{font-size:12px;color:rgba(255,255,255,0.3);text-align:center;margin-top:14px;line-height:1.6}
 
     /* Success state */
     #succ{display:none;text-align:center;padding:36px 20px}
     .si{width:72px;height:72px;border-radius:20px;background:rgba(185,28,28,0.1);border:1px solid rgba(185,28,28,0.25);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
     .st{font-family:'Playfair Display',serif;font-size:30px;font-weight:900;color:#fff;margin-bottom:10px;letter-spacing:-0.5px}
-    .funny{font-size:14px;color:rgba(255,255,255,0.5);font-style:italic;margin-bottom:16px;line-height:1.6}
-    .ss2{font-size:15px;color:rgba(255,255,255,0.38);line-height:1.7;margin-bottom:26px}
-    .sb2{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 20px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.35)}
+    .funny{font-size:14px;color:rgba(255,255,255,0.55);font-style:italic;margin-bottom:16px;line-height:1.6}
+    .ss2{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;margin-bottom:26px}
+    .sb2{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:12px 20px;font-size:12px;font-weight:700;color:rgba(255,255,255,0.45)}
     .gd{width:7px;height:7px;border-radius:50%;background:#4ADE80}
     .ref{background:rgba(185,28,28,0.06);border:1px solid rgba(185,28,28,0.14);border-radius:14px;padding:18px 22px;margin-top:18px;text-align:left;display:none}
     .rt{font-size:13px;font-weight:800;color:#fff;margin-bottom:5px}
-    .rd{font-size:12px;color:rgba(255,255,255,0.38);line-height:1.6}
+    .rd{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.6}
+    .survey-cta{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px 20px;margin-top:16px;text-align:center}
+    .survey-cta p{font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:8px}
+    .survey-cta a{font-size:12px;font-weight:800;letter-spacing:1.5px;color:#B91C1C;text-decoration:none}
+    .survey-cta a:hover{color:#ef4444}
 
-    /* Counter bump animation */
     @keyframes bump{0%{transform:scale(1)}50%{transform:scale(1.3)}100%{transform:scale(1)}}
     .bump{animation:bump 0.4s ease}
 
     footer{padding:36px 48px;background:#080808;display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:14px}
     .fl2{font-family:'Playfair Display',serif;font-size:15px;font-weight:900;color:rgba(255,255,255,0.35);letter-spacing:2px}
     .fl2 em{color:#B91C1C;font-style:normal}
-    .flink{font-size:12px;color:rgba(255,255,255,0.18);text-decoration:none}
-    .flink:hover{color:rgba(255,255,255,0.5)}
+    .flink{font-size:12px;color:rgba(255,255,255,0.3);text-decoration:none}
+    .flink:hover{color:rgba(255,255,255,0.6)}
 
     [data-r]{opacity:0;transform:translateY(26px);transition:opacity 0.7s ease,transform 0.7s ease}
     [data-r].vis{opacity:1;transform:none}
@@ -212,7 +222,7 @@
       <div class="tn">01</div>
       <div>
         <h3 class="tt">You hit it better on the range than the course.</h3>
-        <p class="td">No stakes. No nerves. No consequences. The range trains you for a game that doesn't exist - because nothing real is ever on the line.</p>
+        <p class="td">No stakes. No nerves. No consequences. The range trains you for a game that doesn't exist — because nothing real is ever on the line.</p>
       </div>
     </div>
     <div class="truth" data-r="1">
@@ -235,10 +245,10 @@
 <section class="shift">
   <div data-r>
     <p class="sl">Sunday<em>changes that.</em></p>
-    <p class="ss">Real competition. Real stakes. Paid Out Every Sunday night.</p>
+    <p class="ss">Real competition. Real stakes. Every Sunday night.</p>
   </div>
 </section>
-  
+
 <section style="background:#080808;padding:60px 24px;text-align:center;border-top:1px solid rgba(255,255,255,0.04)">
   <p style="font-size:9px;font-weight:800;letter-spacing:3px;color:#B91C1C;margin-bottom:40px;text-transform:uppercase">THE SUNDAY EXPERIENCE</p>
   <div style="display:flex;gap:24px;justify-content:center;align-items:flex-start;flex-wrap:wrap">
@@ -303,9 +313,13 @@
       <p class="funny" id="funnyLine"></p>
       <p class="ss2">We'll reach out the moment Sunday goes live near you. Your range sessions are about to mean something.</p>
       <div class="sb2"><div class="gd"></div>Waitlist confirmed · playsunday.golf</div>
+      <div class="survey-cta">
+        <p>Want to help shape the product?</p>
+        <a href="/survey.html">TAKE THE RANGE SURVEY →</a>
+      </div>
       <div class="ref" id="refBox">
-        <div class="rt">Move up the leaderboard. 🏆</div>
-        <div class="rd">Share Sunday with your playing partners and get priority early access when we launch.</div>
+        <div class="rt">Already signed up</div>
+        <div class="rd">You're on the list. We'll be in touch when Sunday goes live near you.</div>
       </div>
     </div>
     <p class="fn2">No spam, no selling your data. Just a heads up when Sunday goes live near you.</p>
@@ -319,12 +333,10 @@
 </footer>
 
 <script>
-  // Funny messages on signup
   const funnyLines = [
     "Thank you! We'll see you on the leaderboard."
   ];
 
-  // Scroll reveal
   const obs = new IntersectionObserver(e => {
     e.forEach(x => { if(x.isIntersecting) x.target.classList.add('vis') })
   }, {threshold: 0.1});
@@ -346,24 +358,6 @@
     }
   }
 
-  async function incrementCount() {
-    try {
-      const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
-        headers: { 'X-Master-Key': BIN_KEY }
-      });
-      const data = await res.json();
-      const newCount = (data.record.count || 0) + 1;
-      await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
-        body: JSON.stringify({ count: newCount })
-      });
-      return newCount + BASE_COUNT;
-    } catch(e) {
-      return null;
-    }
-  }
-
   function animCtr(target, dur) {
     const el = document.getElementById('cnum');
     const start = parseInt(el.textContent) || 0;
@@ -378,16 +372,13 @@
     }, 16);
   }
 
-  // Load count on page visit
   getCount();
 
-  // Counter observer
   const cobs = new IntersectionObserver(e => {
     if(e[0].isIntersecting) { getCount(); cobs.disconnect(); }
   }, {threshold: 0.5});
   cobs.observe(document.querySelector('.ctr'));
 
-  // Fireworks
   function fireConfetti() {
     const colors = ['#B91C1C', '#ffffff', '#F5F0E8', '#ef4444'];
     confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 }, colors });
@@ -395,8 +386,7 @@
     setTimeout(() => confetti({ particleCount: 60, spread: 100, origin: { x: 0.9, y: 0.5 }, colors }), 350);
     setTimeout(() => confetti({ particleCount: 40, spread: 60, origin: { y: 0.7 }, colors }), 500);
   }
-  
-  // Check if already signed up
+
   if(localStorage.getItem('sunday-signed-up')) {
     document.getElementById('formWrap').style.display = 'none';
     document.getElementById('succ').style.display = 'block';
@@ -405,7 +395,7 @@
     refBox.style.display = 'block';
     refBox.innerHTML = '<div class="rt">Already signed up</div><div class="rd">You\'re on the list. We\'ll be in touch when Sunday goes live near you. <a href="#" onclick="localStorage.removeItem(\'sunday-signed-up\');location.reload();" style="color:rgba(255,255,255,0.4);font-size:11px;display:block;margin-top:8px;text-decoration:none;">Sign up with a different email →</a></div>';
   }
-  
+
   let gVal = null;
   function selG(btn, v) {
     document.querySelectorAll('.gb').forEach(b => b.classList.remove('sel'));
@@ -422,11 +412,9 @@
       return;
     }
 
-    // Disable button to prevent double clicks
     const btn = document.querySelector('.sb');
     btn.disabled = true;
 
-    // Show success + fireworks IMMEDIATELY
     document.getElementById('formWrap').style.display = 'none';
     document.getElementById('succ').style.display = 'block';
     document.getElementById('refBox').style.display = 'block';
@@ -435,7 +423,6 @@
     fireConfetti();
     localStorage.setItem('sunday-signed-up', '1');
 
-    // Do all backend stuff quietly in background
     try {
       const checkRes = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
         headers: { 'X-Master-Key': BIN_KEY }
@@ -458,7 +445,6 @@
       }
     } catch(e) {}
 
-    // Submit to Netlify in background
     const fd = new FormData();
     fd.append('form-name', 'sunday-waitlist');
     fd.append('firstName', fn); fd.append('email', em);
@@ -474,7 +460,7 @@
     });
   });
 </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVix7pnRgYWNu8HUQCzyhPGifPFHT7N1k&libraries=places"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVix7pnRgYWNu8HUQCzyhPGifPFHT7N1k&libraries=places"></script>
 <script>
   const htInput = document.getElementById('i-ht');
   const autocomplete = new google.maps.places.Autocomplete(htInput, {
