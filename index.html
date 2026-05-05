@@ -238,6 +238,18 @@
     <p class="ss">Real competition. Real stakes. Paid Out Every Sunday night.</p>
   </div>
 </section>
+  
+<section style="background:#080808;padding:60px 24px;text-align:center;border-top:1px solid rgba(255,255,255,0.04)">
+  <p style="font-size:9px;font-weight:800;letter-spacing:3px;color:#B91C1C;margin-bottom:40px;text-transform:uppercase">THE SUNDAY EXPERIENCE</p>
+  <div style="display:flex;gap:24px;justify-content:center;align-items:flex-start;flex-wrap:wrap">
+    <div style="flex:0 0 auto;max-width:280px;width:100%">
+      <img src="leaderboard.png" alt="Sunday Leaderboard" style="width:100%;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.5)"/>
+    </div>
+    <div style="flex:0 0 auto;max-width:280px;width:100%">
+      <img src="wallet.png" alt="Sunday Wallet" style="width:100%;border-radius:24px;box-shadow:0 20px 60px rgba(0,0,0,0.5)"/>
+    </div>
+  </div>
+</section>
 
 <div class="ctr">
   <div class="cn" id="cnum">—</div>
@@ -318,17 +330,17 @@
   }, {threshold: 0.1});
   document.querySelectorAll('[data-r]').forEach(el => obs.observe(el));
 
-  // Live counter via CountAPI
-  const NAMESPACE = 'playsunday-golf';
-  const KEY = 'waitlist-count';
-  const BASE_COUNT = 87; // starting offset
+  const BIN_ID = '69fa1b6436566621a82ac568';
+  const BIN_KEY = '$2a$10$cvpJ62bG3d5CR68nCsdoe.8cExXu5uFRysO2YzGpAwarx6YTi7oFa';
+  const BASE_COUNT = 87;
 
   async function getCount() {
     try {
-      const res = await fetch(`https://api.countapi.xyz/get/${NAMESPACE}/${KEY}`);
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+        headers: { 'X-Master-Key': BIN_KEY }
+      });
       const data = await res.json();
-      const total = (data.value || 0) + BASE_COUNT;
-      animCtr(total, 800);
+      animCtr((data.record.count || 0) + BASE_COUNT, 800);
     } catch(e) {
       document.getElementById('cnum').textContent = BASE_COUNT;
     }
@@ -336,9 +348,17 @@
 
   async function incrementCount() {
     try {
-      const res = await fetch(`https://api.countapi.xyz/hit/${NAMESPACE}/${KEY}`);
+      const res = await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}/latest`, {
+        headers: { 'X-Master-Key': BIN_KEY }
+      });
       const data = await res.json();
-      return (data.value || 0) + BASE_COUNT;
+      const newCount = (data.record.count || 0) + 1;
+      await fetch(`https://api.jsonbin.io/v3/b/${BIN_ID}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json', 'X-Master-Key': BIN_KEY },
+        body: JSON.stringify({ count: newCount })
+      });
+      return newCount + BASE_COUNT;
     } catch(e) {
       return null;
     }
